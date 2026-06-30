@@ -3,6 +3,7 @@
  * Theme bootstrap file.
  *
  * @package MrSobolle
+ *
  */
 
 defined( 'ABSPATH' ) || exit;
