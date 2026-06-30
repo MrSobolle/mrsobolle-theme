@@ -36,4 +36,4 @@ Early development. The architecture and public pages are being built step by ste
 
 Dmitriy Fedotov / MrSobolle
 
-The repository is connected to PhpStorm and GitHub.
+
