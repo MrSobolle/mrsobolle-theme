@@ -1,0 +1,33 @@
+﻿# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE
+.idea/
+.vscode/
+
+# Logs and debug files
+*.log
+debug.log
+logs/
+*.tmp
+*.temp
+
+# Environment and secrets
+.env
+.env.*
+*.key
+*.pem
+
+# Dependencies and build caches
+node_modules/
+.npm/
+.cache/
+.sass-cache/
+
+# WordPress local/runtime files inside theme, if any
+*.sql
+*.zip
+*.tar
+*.tar.gz

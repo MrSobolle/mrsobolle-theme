@@ -1,0 +1,25 @@
+/*!
+Theme Name: MrSobolle
+Theme URI: https://mrsobolle.com/
+Author: Dmitriy Fedotov
+Author URI: https://mrsobolle.com/
+Description: A modern personal portfolio and family website theme for mrsobolle.com. Built as a clean, fast, SEO-oriented classic WordPress theme with a minimal object-oriented architecture.
+Version: 0.1.0
+Requires at least: 6.5
+Tested up to: 6.8
+Requires PHP: 8.1
+License: GNU General Public License v2 or later
+License URI: https://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: mrsobolle
+Tags: portfolio, personal, blog, custom-logo, custom-menu, featured-images, translation-ready
+*/
+
+/*
+This file is used primarily as the WordPress theme stylesheet header.
+
+Main frontend styles are located in:
+assets/css/main.css
+
+Editor styles are located in:
+assets/css/editor.css
+*/
