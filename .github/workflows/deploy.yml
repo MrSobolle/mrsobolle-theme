@@ -1,0 +1,53 @@
+﻿name: Deploy theme to WPMU DEV
+
+on:
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "Preview changes without modifying server files"
+        required: true
+        default: "true"
+        type: choice
+        options:
+          - "true"
+          - "false"
+
+jobs:
+  deploy:
+    name: Deploy WordPress theme
+    runs-on: ubuntu-latest
+
+    env:
+      SSH_HOST: ${{ secrets.SSH_HOST }}
+      SSH_PORT: ${{ secrets.SSH_PORT }}
+      SSH_USER: ${{ secrets.SSH_USER }}
+      SSH_TARGET: ${{ secrets.SSH_TARGET }}
+      DRY_RUN: ${{ github.event.inputs.dry_run }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Prepare SSH
+        run: |
+          mkdir -p ~/.ssh
+          printf '%s\n' "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          ssh-keyscan -p "$SSH_PORT" "$SSH_HOST" >> ~/.ssh/known_hosts
+
+      - name: Test SSH connection
+        run: |
+          ssh -i ~/.ssh/deploy_key -p "$SSH_PORT" "$SSH_USER@$SSH_HOST" "test -d '$SSH_TARGET' && echo 'Target exists: $SSH_TARGET'"
+
+      - name: Deploy theme files
+        run: |
+          FLAGS="-azv --delete"
+          if [ "$DRY_RUN" = "true" ]; then
+            FLAGS="$FLAGS --dry-run"
+            echo "Running in dry-run mode. No files will be changed."
+          fi
+
+          rsync $FLAGS \
+            --exclude-from=.deployignore \
+            -e "ssh -i ~/.ssh/deploy_key -p $SSH_PORT -o StrictHostKeyChecking=yes" \
+            ./ "$SSH_USER@$SSH_HOST:$SSH_TARGET/"
