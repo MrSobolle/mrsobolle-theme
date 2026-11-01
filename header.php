@@ -6,6 +6,7 @@
  */
 
 use MrSobolle\Data\Site_Data;
+use MrSobolle\Data\Directory_Data;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -74,13 +75,27 @@ $home_url         = Site_Data::home_url();
                 <?php else : ?>
 
                     <ul id="primary-menu" class="main-navigation__list">
-                        <li><a href="#about"><?php esc_html_e( 'About', 'mrsobolle' ); ?></a></li>
-                        <li><a href="#projects"><?php esc_html_e( 'Projects', 'mrsobolle' ); ?></a></li>
-                        <li><a href="#contact"><?php esc_html_e( 'Contact', 'mrsobolle' ); ?></a></li>
+                        <?php
+                        $work_url = Directory_Data::directory_url( 'work' );
+                        $apps_url = Directory_Data::directory_url( 'apps' );
+                        ?>
+                        <?php if ( '' !== $work_url ) : ?>
+                            <li><a href="<?php echo esc_url( $work_url ); ?>"><?php esc_html_e( 'Work', 'mrsobolle' ); ?></a></li>
+                        <?php endif; ?>
+                        <?php if ( '' !== $apps_url ) : ?>
+                            <li><a href="<?php echo esc_url( $apps_url ); ?>"><?php esc_html_e( 'Apps', 'mrsobolle' ); ?></a></li>
+                        <?php endif; ?>
+                        <li><a href="<?php echo esc_url( $home_url . '#about' ); ?>"><?php esc_html_e( 'About', 'mrsobolle' ); ?></a></li>
+                        <?php if ( '' === $work_url && '' === $apps_url ) : ?>
+                            <li><a href="<?php echo esc_url( $home_url . '#projects' ); ?>"><?php esc_html_e( 'Projects', 'mrsobolle' ); ?></a></li>
+                        <?php endif; ?>
+                        <li><a href="<?php echo esc_url( $home_url . '#contact' ); ?>"><?php esc_html_e( 'Contact', 'mrsobolle' ); ?></a></li>
                     </ul>
 
                 <?php endif; ?>
             </nav>
+
+            <?php get_template_part( 'template-parts/site/language-switcher' ); ?>
 
         </div>
     </header>

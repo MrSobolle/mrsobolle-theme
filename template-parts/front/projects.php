@@ -36,6 +36,8 @@ $items  = isset( $items ) && is_array( $items ) ? $items : [];
 
                     $item_title = isset( $item['title'] ) ? (string) $item['title'] : '';
                     $item_text  = isset( $item['text'] ) ? (string) $item['text'] : '';
+                    $item_url   = isset( $item['url'] ) ? (string) $item['url'] : '';
+                    $item_label = isset( $item['link_label'] ) ? (string) $item['link_label'] : '';
 
                     if ( '' === $item_title && '' === $item_text ) {
                         continue;
@@ -53,6 +55,13 @@ $items  = isset( $items ) && is_array( $items ) ? $items : [];
                             <p class="project-card__text">
                                 <?php echo esc_html( $item_text ); ?>
                             </p>
+                        <?php endif; ?>
+
+                        <?php if ( '' !== $item_url && '' !== $item_label ) : ?>
+                            <a class="project-card__link" href="<?php echo esc_url( $item_url ); ?>">
+                                <?php echo esc_html( $item_label ); ?>
+                                <span aria-hidden="true">&rarr;</span>
+                            </a>
                         <?php endif; ?>
                     </article>
                 <?php endforeach; ?>

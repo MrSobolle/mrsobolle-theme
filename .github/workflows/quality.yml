@@ -32,6 +32,13 @@ jobs:
           set -euo pipefail
           git ls-files -z -- '*.php' | xargs -0 -r -n 1 php -l
 
+      - name: Test catalog and language rendering with WordPress mocks
+        shell: bash
+        run: |
+          set -euo pipefail
+          php tests/php/catalog.test.php
+          php tests/php/language-switcher.test.php
+
   browser-smoke:
     name: Browser smoke (public site)
     runs-on: ubuntu-latest
