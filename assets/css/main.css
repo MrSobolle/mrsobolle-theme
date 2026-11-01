@@ -693,3 +693,35 @@ body.home .hero-section--studio .hero-section__panel {display:none;}
  .studio-hero__art {opacity:.52;}
  body.home .hero-section--studio .hero-section__content * {transform:none!important;opacity:1!important;}
 }
+
+/* QA refinement: keep the sculpture behind readable copy and compact the mobile navigation. */
+body.home .hero-section--studio::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    background: linear-gradient(90deg, rgba(7, 10, 15, .94) 0%, rgba(7, 10, 15, .68) 36%, transparent 72%);
+}
+@media (max-width: 820px) {
+    body.home .site-header__inner {
+        align-items: stretch;
+        gap: .55rem;
+        padding-block: .65rem;
+    }
+    body.home .main-navigation__list {
+        gap: 1rem;
+    }
+    body.home .language-switcher__list {
+        gap: .1rem;
+        flex-wrap: nowrap;
+    }
+    body.home .language-switcher__link {
+        min-height: 32px;
+        padding: .25rem .45rem;
+        font-size: .76rem;
+    }
+    body.home .hero-section--studio::before {
+        background: linear-gradient(180deg, transparent 13%, rgba(7, 10, 15, .22) 35%, rgba(7, 10, 15, .7) 63%, rgba(7, 10, 15, .91) 100%);
+    }
+}
