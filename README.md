@@ -9,7 +9,7 @@ https://mrsobolle.com/.
 - Homepage focused on professional work and independently developed software.
 - Two native WordPress Page catalogs, Work and Apps, with automatic listings of published immediate child pages.
 - Gutenberg-editable detail pages for projects, software, documentation, privacy notices and release notes.
-- Translation-ready strings and a conditional Polylang language switcher (nothing appears until configured).
+- Polylang Free 3.9.1 integration with 5-language navigation and complete gettext UI catalogs for four translations.
 - No billing, checkout, licensing API or user account logic in the theme.
 
 ## Editorial setup (WordPress Pages)
@@ -29,16 +29,23 @@ system. Never identify licenses by URL, translated slug or WordPress Page ID.
 
 ### Language support
 
-The languages and default URL format have not been selected yet. Do not create
-language prefixes or redirects in this theme. When a multilingual provider
-like Polylang is selected and tested, assign equivalent catalog templates to
-their translated parent Pages and translate child Pages via WordPress editor.
-The switcher shows only when at least two valid translations are available.
+The enabled languages are English (default), Russian, German, French and
+Spanish. Production uses Polylang Free 3.9.1. English retains canonical
+unprefixed URLs, such as /apps/widecrop/. Other languages use /ru/, /de/,
+/fr/ and /es/ plus localized page slugs.
 
-Page templates do not assume a language code, country, currency or billing
-provider. Gettext translation strings are present, but .po/.mo languages have
-not yet been authored.
+Polylang links translated WordPress Pages and provides SEO hreflang links.
+The header language switcher links to the equivalent translated Page.
+All existing posts/pages were assigned to English at setup; each translated
+catalog uses the same WordPress Page template.
 
+The theme contains gettext PO and binary MO catalogs for ru_RU, de_DE,
+fr_FR and es_ES, stored under languages/ and tracked in GitHub. English
+UI source strings live in PHP. Translated Page contents are editable in
+WordPress, while navigation labels and homepage copy are in theme gettext.
+Language selection is independent of browser location, payment plans or
+license IDs. Translations, especially legal/privacy copy, should be checked
+by fluent reviewers before representing them as legally reviewed.
 ### Security and publishing
 
 Do not publish confidential client case studies, private repositories or
@@ -52,6 +59,7 @@ Run on PHP 8.2:
 
     php tests/php/catalog.test.php
     php tests/php/language-switcher.test.php
+    php tests/php/translations.test.php
 
 PHP lint and mocked rendering tests run on Pull Requests. Separate Playwright
 smoke tests currently target the deployed public site, not new PR code.

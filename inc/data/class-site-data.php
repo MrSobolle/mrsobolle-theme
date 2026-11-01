@@ -51,7 +51,7 @@ final class Site_Data {
     public static function owner(): array {
         return [
             'name'     => 'Dmitriy Fedotov',
-            'role'     => 'Software Engineer / PHP & WordPress',
+            'role'     => __( 'Software Engineer / PHP & WordPress', 'mrsobolle' ),
             'location' => 'Europe / Remote',
         ];
     }
