@@ -1,0 +1,70 @@
+name: Theme quality
+
+on:
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+  workflow_call:
+
+permissions:
+  contents: read
+
+jobs:
+  php-lint:
+    name: PHP syntax (8.2)
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v6
+
+      - name: Setup production-compatible PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+          coverage: none
+          tools: none
+
+      - name: Lint all tracked PHP files
+        shell: bash
+        run: |
+          set -euo pipefail
+          git ls-files -z -- '*.php' | xargs -0 -r -n 1 php -l
+
+  browser-smoke:
+    name: Browser smoke (public site)
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v6
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: '24'
+          cache: npm
+
+      - name: Install test dependencies
+        run: npm ci
+
+      - name: Install Chromium for Playwright
+        run: npx playwright install --with-deps chromium
+
+      - name: Read-only smoke against currently deployed site
+        run: npm run test:smoke
+        env:
+          CI: 'true'
+          QA_BASE_URL: https://mrsobolle.com/
+
+      - name: Preserve Playwright report and failure traces
+        if: always()
+        uses: actions/upload-artifact@v5
+        with:
+          name: playwright-smoke
+          path: |
+            playwright-report/
+            test-results/
+          if-no-files-found: ignore
+          retention-days: 14

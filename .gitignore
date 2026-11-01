@@ -1,4 +1,4 @@
-﻿# OS files
+# OS files
 .DS_Store
 Thumbs.db
 desktop.ini
@@ -31,3 +31,5 @@ node_modules/
 *.zip
 *.tar
 *.tar.gz
+test-results/
+playwright-report/
