@@ -31,6 +31,9 @@ final class Assets {
      */
     public function enqueue_frontend_assets(): void {
         $this->enqueue_main_styles();
+        if ( is_front_page() ) {
+            $this->enqueue_studio_scripts();
+        }
         $this->enqueue_main_scripts();
     }
 
@@ -57,6 +60,16 @@ final class Assets {
     /**
      * Enqueues main frontend script.
      */
+    private function enqueue_studio_scripts(): void {
+        $gsap = '/assets/vendor/gsap.min.js';
+        $hero = '/assets/js/studio-hero.js';
+        if ( ! file_exists( get_template_directory() . $gsap ) || ! file_exists( get_template_directory() . $hero ) ) {
+            return;
+        }
+        wp_enqueue_script( 'mrsobolle-gsap', get_template_directory_uri() . $gsap, [], '3.15.0', true );
+        wp_enqueue_script( 'mrsobolle-studio-hero', get_template_directory_uri() . $hero, [ 'mrsobolle-gsap' ], (string) filemtime( get_template_directory() . $hero ), true );
+    }
+
     private function enqueue_main_scripts(): void {
         $relative_path = '/assets/js/main.js';
         $file_path     = get_template_directory() . $relative_path;

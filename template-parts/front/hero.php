@@ -17,8 +17,11 @@ $profile_label = isset( $profile['label'] ) ? (string) $profile['label'] : '';
 $profile_items = isset( $profile['items'] ) && is_array( $profile['items'] ) ? $profile['items'] : [];
 ?>
 
-<section class="hero-section">
-    <div class="container hero-section__inner">
+<section class="hero-section hero-section--studio" data-studio-hero>
+    <div class="studio-hero__art" aria-hidden="true" data-studio-art data-three-module="<?php echo esc_url( get_theme_file_uri( '/assets/vendor/three.module.js' ) ); ?>">
+    <div class="studio-hero__static-object"></div>
+</div>
+<div class="container hero-section__inner">
 
         <div class="hero-section__content">
             <?php if ( '' !== $eyebrow ) : ?>
@@ -29,7 +32,7 @@ $profile_items = isset( $profile['items'] ) && is_array( $profile['items'] ) ? $
 
             <?php if ( '' !== $title ) : ?>
                 <h1 class="hero-section__title">
-                    <?php echo esc_html( $title ); ?>
+                    <?php echo esc_html( "Sobolle Studio" ); ?>
                 </h1>
             <?php endif; ?>
 
@@ -40,7 +43,8 @@ $profile_items = isset( $profile['items'] ) && is_array( $profile['items'] ) ? $
             <?php endif; ?>
 
             <?php if ( ! empty( $actions ) ) : ?>
-                <div class="hero-section__actions">
+                <p class="studio-hero__credit"><?php echo esc_html( $title ); ?> / <?php echo esc_html( $eyebrow ); ?></p>
+            <div class="hero-section__actions">
                     <?php foreach ( $actions as $action ) : ?>
                         <?php
                         if ( ! is_array( $action ) ) {
