@@ -32,6 +32,14 @@ final class Site_Data {
      * Returns the home URL.
      */
     public static function home_url(): string {
+        if ( function_exists( 'pll_home_url' ) ) {
+            $localized = pll_home_url();
+
+            if ( is_string( $localized ) && '' !== $localized ) {
+                return $localized;
+            }
+        }
+
         return home_url( '/' );
     }
 
@@ -43,7 +51,7 @@ final class Site_Data {
     public static function owner(): array {
         return [
             'name'     => 'Dmitriy Fedotov',
-            'role'     => 'WordPress / PHP Developer',
+            'role'     => 'Software Engineer / PHP & WordPress',
             'location' => 'Europe / Remote',
         ];
     }
@@ -69,7 +77,7 @@ final class Site_Data {
             ],
             [
                 'label' => __( 'GitHub', 'mrsobolle' ),
-                'url'   => '#',
+                'url'   => 'https://github.com/MrSobolle',
                 'type'  => 'social',
             ],
         ];

@@ -22,6 +22,9 @@ final class Setup {
         $this->add_theme_supports();
         $this->register_menus();
         $this->register_image_sizes();
+
+        // Allow editors to write concise catalog-card summaries for Pages.
+        add_action( 'init', [ $this, 'enable_page_excerpts' ] );
     }
 
     /**
@@ -71,6 +74,12 @@ final class Setup {
         add_image_size( 'mrsobolle-hero', 1600, 900, true );
     }
 
+    /**
+     * Enables an excerpt field for directory cards backed by native Pages.
+     */
+    public function enable_page_excerpts(): void {
+        add_post_type_support( 'page', 'excerpt' );
+    }
     /**
      * Returns supported HTML5 features.
      *

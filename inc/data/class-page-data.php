@@ -39,11 +39,11 @@ final class Page_Data {
         return [
             'eyebrow' => $owner['role'],
             'title'   => $owner['name'],
-            'lead'    => __( 'I build clean, fast and maintainable WordPress solutions with custom architecture, data processing, SEO logic and practical business focus.', 'mrsobolle' ),
+            'lead'    => __( 'I build maintainable software with PHP, WordPress, data pipelines and automation. I focus on dependable architecture and practical outcomes.', 'mrsobolle' ),
             'actions' => [
                 [
                     'label' => __( 'View projects', 'mrsobolle' ),
-                    'url'   => '#projects',
+                    'url'   => Directory_Data::directory_url( 'work' ) ?: '#projects',
                     'style' => 'primary',
                 ],
                 [
@@ -72,8 +72,8 @@ final class Page_Data {
     private static function get_about_data(): array {
         return [
             'kicker' => __( 'About', 'mrsobolle' ),
-            'title'  => __( 'A practical developer with a strong architectural mindset.', 'mrsobolle' ),
-            'text'   => __( 'This website is a personal portfolio, family site and technical showcase of a modern WordPress theme built step by step with clean structure and maintainable code.', 'mrsobolle' ),
+            'title'  => __( 'Software engineering from architecture to delivery.', 'mrsobolle' ),
+            'text'   => __( 'I work with PHP, WordPress, integrations, data processing and developer tooling. Here you can explore my professional work and independently built software.', 'mrsobolle' ),
         ];
     }
 
@@ -85,19 +85,25 @@ final class Page_Data {
     private static function get_projects_data(): array {
         return [
             'kicker' => __( 'Projects', 'mrsobolle' ),
-            'title'  => __( 'Selected directions', 'mrsobolle' ),
+            'title'  => __( 'Professional work & software', 'mrsobolle' ),
             'items'  => [
                 [
-                    'title' => __( 'Portfolio', 'mrsobolle' ),
-                    'text'  => __( 'A structured presentation of professional experience, cases and technical background.', 'mrsobolle' ),
+                    'title' => __( 'Professional work', 'mrsobolle' ),
+                    'url'   => Directory_Data::directory_url( 'work' ),
+                    'link_label' => __( 'Explore work', 'mrsobolle' ),
+                    'text'  => __( 'Selected engineering challenges, architectural decisions and technical contributions.', 'mrsobolle' ),
                 ],
                 [
-                    'title' => __( 'WordPress Theme', 'mrsobolle' ),
-                    'text'  => __( 'A clean classic theme with object-oriented backend modules and simple frontend technologies.', 'mrsobolle' ),
+                    'title' => __( 'Software products', 'mrsobolle' ),
+                    'url'   => Directory_Data::directory_url( 'apps' ),
+                    'link_label' => __( 'Explore apps', 'mrsobolle' ),
+                    'text'  => __( 'Browser extensions, automation tools and software built around practical needs.', 'mrsobolle' ),
                 ],
                 [
-                    'title' => __( 'Family Website', 'mrsobolle' ),
-                    'text'  => __( 'A personal space for future family history, photos, notes and memories.', 'mrsobolle' ),
+                    'title' => __( 'Open development', 'mrsobolle' ),
+                    'url'   => 'https://github.com/MrSobolle/mrsobolle-theme',
+                    'link_label' => __( 'View source', 'mrsobolle' ),
+                    'text'  => __( 'This website is an open example of maintainable WordPress theme development.', 'mrsobolle' ),
                 ],
             ],
         ];
@@ -112,7 +118,7 @@ final class Page_Data {
         return [
             'kicker' => __( 'Contact', 'mrsobolle' ),
             'title'  => __( 'Let’s build something clear, useful and reliable.', 'mrsobolle' ),
-            'text'   => __( 'Contact details and social links will be expanded in the next iterations.', 'mrsobolle' ),
+            'text'   => __( 'For professional inquiries, please use one of the contact links below.', 'mrsobolle' ),
             'links'  => Site_Data::contact_links(),
         ];
     }
