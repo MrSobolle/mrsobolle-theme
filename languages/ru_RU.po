@@ -1,0 +1,156 @@
+# Translation catalog for the MrSobolle WordPress theme.
+# Source text is English; translations below are editable.
+msgid ""
+msgstr ""
+"Project-Id-Version: MrSobolle 0.2.1\n"
+"Language: ru_RU\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : 2);\n"
+
+msgid "About"
+msgstr "Обо мне"
+
+msgid "Apps"
+msgstr "Приложения"
+
+msgid "Browser extensions, automation tools and software built around practical needs."
+msgstr "Расширения браузера, средства автоматизации и программы для практических задач."
+
+msgid "Case studies will appear here as they become available."
+msgstr "По мере готовности здесь будут появляться профессиональные кейсы."
+
+msgid "Contact"
+msgstr "Контакты"
+
+msgid "Contact links"
+msgstr "Способы связи"
+
+msgid "Contact me"
+msgstr "Написать мне"
+
+msgid "Custom WordPress themes"
+msgstr "Собственные темы WordPress"
+
+msgid "Data import and automation"
+msgstr "Импорт данных и автоматизация"
+
+msgid "Email"
+msgstr "Электронная почта"
+
+msgid "Explore"
+msgstr "Подробнее"
+
+msgid "Explore apps"
+msgstr "Посмотреть приложения"
+
+msgid "Explore work"
+msgstr "Посмотреть работы"
+
+msgid "Focus"
+msgstr "Специализация"
+
+msgid "Footer Menu"
+msgstr "Меню внизу страницы"
+
+msgid "Footer menu"
+msgstr "Меню внизу страницы"
+
+msgid "For professional inquiries, please use one of the contact links below."
+msgstr "По профессиональным вопросам воспользуйтесь контактами ниже."
+
+msgid "GitHub"
+msgstr "GitHub"
+
+msgid "Home"
+msgstr "Главная"
+
+msgid "I build maintainable software with PHP, WordPress, data pipelines and automation. I focus on dependable architecture and practical outcomes."
+msgstr "Я создаю сопровождаемые программные решения на PHP и WordPress, работаю с обработкой данных и автоматизацией. Главное для меня — надёжная архитектура и практический результат."
+
+msgid "I work with PHP, WordPress, integrations, data processing and developer tooling. Here you can explore my professional work and independently built software."
+msgstr "Я работаю с PHP, WordPress, интеграциями, обработкой данных и инструментами разработчика. Здесь представлены мои профессиональные проекты и собственные программы."
+
+msgid "Language"
+msgstr "Язык"
+
+msgid "Let’s build something clear, useful and reliable."
+msgstr "Давайте создадим что-то понятное, полезное и надёжное."
+
+msgid "LinkedIn"
+msgstr "LinkedIn"
+
+msgid "No content is available yet."
+msgstr "Пока нет доступного содержимого."
+
+msgid "Nothing found"
+msgstr "Ничего не найдено"
+
+msgid "Open development"
+msgstr "Открытая разработка"
+
+msgid "PHP architecture"
+msgstr "Архитектура PHP"
+
+msgid "Primary Menu"
+msgstr "Основное меню"
+
+msgid "Primary menu"
+msgstr "Основное меню"
+
+msgid "Product pages will appear here as they become available."
+msgstr "Здесь будут появляться страницы программ по мере их готовности."
+
+msgid "Professional work"
+msgstr "Профессиональные работы"
+
+msgid "Professional work & software"
+msgstr "Проекты и программы"
+
+msgid "Projects"
+msgstr "Проекты"
+
+msgid "SEO-oriented structures"
+msgstr "Структуры с учётом SEO"
+
+msgid "Selected engineering challenges, architectural decisions and technical contributions."
+msgstr "Инженерные задачи, архитектурные решения и технический вклад."
+
+msgid "Selected work"
+msgstr "Избранные работы"
+
+msgid "Skip to content"
+msgstr "Перейти к содержимому"
+
+msgid "Social Links Menu"
+msgstr "Меню социальных сетей"
+
+msgid "Social links"
+msgstr "Социальные сети"
+
+msgid "Software & tools"
+msgstr "Программы и инструменты"
+
+msgid "Software Engineer / PHP & WordPress"
+msgstr "Инженер-программист / PHP и WordPress"
+
+msgid "Software engineering from architecture to delivery."
+msgstr "Разработка программ: от архитектуры до выпуска."
+
+msgid "Software products"
+msgstr "Программные продукты"
+
+msgid "This website is an open example of maintainable WordPress theme development."
+msgstr "Этот сайт — открытый пример разработки сопровождаемой темы WordPress."
+
+msgid "View projects"
+msgstr "Посмотреть проекты"
+
+msgid "View source"
+msgstr "Исходный код"
+
+msgid "Work"
+msgstr "Работы"
+
+msgid "© %1$s %2$s. All rights reserved."
+msgstr "© %1$s %2$s. Все права защищены."

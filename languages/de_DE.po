@@ -1,0 +1,156 @@
+# Translation catalog for the MrSobolle WordPress theme.
+# Source text is English; translations below are editable.
+msgid ""
+msgstr ""
+"Project-Id-Version: MrSobolle 0.2.1\n"
+"Language: de_DE\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "About"
+msgstr "Über mich"
+
+msgid "Apps"
+msgstr "Anwendungen"
+
+msgid "Browser extensions, automation tools and software built around practical needs."
+msgstr "Browser-Erweiterungen, Automatisierungswerkzeuge und Software für praktische Aufgaben."
+
+msgid "Case studies will appear here as they become available."
+msgstr "Fallstudien werden hier veröffentlicht, sobald sie verfügbar sind."
+
+msgid "Contact"
+msgstr "Kontakt"
+
+msgid "Contact links"
+msgstr "Kontaktmöglichkeiten"
+
+msgid "Contact me"
+msgstr "Kontakt aufnehmen"
+
+msgid "Custom WordPress themes"
+msgstr "Individuelle WordPress-Themes"
+
+msgid "Data import and automation"
+msgstr "Datenimport und Automatisierung"
+
+msgid "Email"
+msgstr "E-Mail"
+
+msgid "Explore"
+msgstr "Mehr erfahren"
+
+msgid "Explore apps"
+msgstr "Anwendungen entdecken"
+
+msgid "Explore work"
+msgstr "Projekte ansehen"
+
+msgid "Focus"
+msgstr "Schwerpunkte"
+
+msgid "Footer Menu"
+msgstr "Fußzeilenmenü"
+
+msgid "Footer menu"
+msgstr "Fußzeilenmenü"
+
+msgid "For professional inquiries, please use one of the contact links below."
+msgstr "Für berufliche Anfragen nutzen Sie bitte die untenstehenden Kontaktmöglichkeiten."
+
+msgid "GitHub"
+msgstr "GitHub"
+
+msgid "Home"
+msgstr "Startseite"
+
+msgid "I build maintainable software with PHP, WordPress, data pipelines and automation. I focus on dependable architecture and practical outcomes."
+msgstr "Ich entwickle wartbare Software mit PHP und WordPress sowie Lösungen für Datenverarbeitung und Automatisierung. Dabei stehen eine zuverlässige Architektur und praktische Ergebnisse im Mittelpunkt."
+
+msgid "I work with PHP, WordPress, integrations, data processing and developer tooling. Here you can explore my professional work and independently built software."
+msgstr "Ich arbeite mit PHP, WordPress, Integrationen, Datenverarbeitung und Entwicklerwerkzeugen. Hier finden Sie meine beruflichen Projekte und unabhängig entwickelte Software."
+
+msgid "Language"
+msgstr "Sprache"
+
+msgid "Let’s build something clear, useful and reliable."
+msgstr "Gemeinsam können wir etwas Klares, Nützliches und Zuverlässiges entwickeln."
+
+msgid "LinkedIn"
+msgstr "LinkedIn"
+
+msgid "No content is available yet."
+msgstr "Zurzeit sind keine Inhalte verfügbar."
+
+msgid "Nothing found"
+msgstr "Nichts gefunden"
+
+msgid "Open development"
+msgstr "Offene Entwicklung"
+
+msgid "PHP architecture"
+msgstr "PHP-Architektur"
+
+msgid "Primary Menu"
+msgstr "Hauptmenü"
+
+msgid "Primary menu"
+msgstr "Hauptmenü"
+
+msgid "Product pages will appear here as they become available."
+msgstr "Produktseiten werden hier veröffentlicht, sobald sie verfügbar sind."
+
+msgid "Professional work"
+msgstr "Berufliche Projekte"
+
+msgid "Professional work & software"
+msgstr "Projekte und Software"
+
+msgid "Projects"
+msgstr "Projekte"
+
+msgid "SEO-oriented structures"
+msgstr "SEO-orientierte Strukturen"
+
+msgid "Selected engineering challenges, architectural decisions and technical contributions."
+msgstr "Technische Herausforderungen, Architekturentscheidungen und konkrete Entwicklungsbeiträge."
+
+msgid "Selected work"
+msgstr "Ausgewählte Projekte"
+
+msgid "Skip to content"
+msgstr "Zum Inhalt springen"
+
+msgid "Social Links Menu"
+msgstr "Menü für soziale Netzwerke"
+
+msgid "Social links"
+msgstr "Soziale Netzwerke"
+
+msgid "Software & tools"
+msgstr "Software und Werkzeuge"
+
+msgid "Software Engineer / PHP & WordPress"
+msgstr "Softwareentwickler / PHP und WordPress"
+
+msgid "Software engineering from architecture to delivery."
+msgstr "Softwareentwicklung von der Architektur bis zur Bereitstellung."
+
+msgid "Software products"
+msgstr "Softwareprodukte"
+
+msgid "This website is an open example of maintainable WordPress theme development."
+msgstr "Diese Website ist ein offenes Beispiel für die Entwicklung eines wartbaren WordPress-Themes."
+
+msgid "View projects"
+msgstr "Projekte ansehen"
+
+msgid "View source"
+msgstr "Quellcode ansehen"
+
+msgid "Work"
+msgstr "Projekte"
+
+msgid "© %1$s %2$s. All rights reserved."
+msgstr "© %1$s %2$s. Alle Rechte vorbehalten."
