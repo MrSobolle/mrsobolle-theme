@@ -1,10 +1,6 @@
-﻿name: Deploy theme to WPMU DEV
+name: Deploy theme to WPMU DEV
 
 on:
-  push:
-    branches:
-      - main
-
   workflow_dispatch:
     inputs:
       dry_run:
@@ -15,9 +11,26 @@ on:
         options:
           - "true"
           - "false"
+      confirm_production:
+        description: "For a real deployment: set dry_run=false and type DEPLOY"
+        required: false
+        default: ""
+        type: string
+
+permissions:
+  contents: read
+
+concurrency:
+  group: mrsobolle-theme-production
+  cancel-in-progress: false
 
 jobs:
+  quality:
+    name: Pre-deploy quality checks
+    uses: ./.github/workflows/quality.yml
+
   deploy:
+    needs: quality
     name: Deploy WordPress theme
     runs-on: ubuntu-latest
 
@@ -27,8 +40,17 @@ jobs:
       SSH_USER: ${{ secrets.SSH_USER }}
       SSH_TARGET: ${{ secrets.SSH_TARGET }}
       DRY_RUN: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.dry_run || 'false' }}
+      CONFIRM_PRODUCTION: ${{ github.event.inputs.confirm_production }}
 
     steps:
+      - name: Require explicit confirmation for a real deployment
+        shell: bash
+        run: |
+          if [ "$DRY_RUN" = "false" ] && [ "$CONFIRM_PRODUCTION" != "DEPLOY" ]; then
+            echo "Refusing production deployment without explicit DEPLOY confirmation" >&2
+            exit 1
+          fi
+
       - name: Checkout repository
         uses: actions/checkout@v7
 

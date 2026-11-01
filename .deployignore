@@ -1,4 +1,4 @@
-﻿.git/
+.git/
 .github/
 .idea/
 .vscode/
@@ -27,3 +27,10 @@ logs/
 *.zip
 *.tar
 *.tar.gz
+tests/
+scripts/
+playwright.config.mjs
+package.json
+package-lock.json
+test-results/
+playwright-report/
