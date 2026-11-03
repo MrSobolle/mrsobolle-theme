@@ -1,10 +1,10 @@
-name: Deploy theme to WPMU DEV
+name: Deploy theme to Webdock
 
 on:
   workflow_dispatch:
     inputs:
       dry_run:
-        description: "Preview changes without modifying server files"
+        description: "Preview changes without modifying the live theme"
         required: true
         default: "true"
         type: choice
@@ -12,7 +12,7 @@ on:
           - "true"
           - "false"
       confirm_production:
-        description: "For a real deployment: set dry_run=false and type DEPLOY"
+        description: "For live deployment choose dry_run=false and type DEPLOY"
         required: false
         default: ""
         type: string
@@ -21,7 +21,7 @@ permissions:
   contents: read
 
 concurrency:
-  group: mrsobolle-theme-production
+  group: mrsobolle-theme-webdock-production
   cancel-in-progress: false
 
 jobs:
@@ -31,49 +31,85 @@ jobs:
 
   deploy:
     needs: quality
-    name: Deploy WordPress theme
+    name: Deploy WordPress theme to Webdock
     runs-on: ubuntu-latest
+    timeout-minutes: 15
+    environment: webdock-production
 
     env:
-      SSH_HOST: ${{ secrets.SSH_HOST }}
-      SSH_PORT: ${{ secrets.SSH_PORT }}
-      SSH_USER: ${{ secrets.SSH_USER }}
-      SSH_TARGET: ${{ secrets.SSH_TARGET }}
-      DRY_RUN: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.dry_run || 'false' }}
-      CONFIRM_PRODUCTION: ${{ github.event.inputs.confirm_production }}
+      SSH_HOST: "217.78.237.130"
+      SSH_PORT: "22"
+      SSH_USER: "mrsdeploy"
+      SSH_TARGET: "/var/www/mrsobolle-stage/wp-content/themes/mrsobolle"
+      DRY_RUN: ${{ inputs.dry_run }}
+      CONFIRM_PRODUCTION: ${{ inputs.confirm_production }}
 
     steps:
-      - name: Require explicit confirmation for a real deployment
+      - name: Check required confirmation and production branch
         shell: bash
         run: |
-          if [ "$DRY_RUN" = "false" ] && [ "$CONFIRM_PRODUCTION" != "DEPLOY" ]; then
-            echo "Refusing production deployment without explicit DEPLOY confirmation" >&2
+          set -euo pipefail
+          if [[ "$DRY_RUN" != "true" && "$DRY_RUN" != "false" ]]; then
+            echo "DRY_RUN must be true or false" >&2
             exit 1
+          fi
+          if [[ "$DRY_RUN" == "false" ]]; then
+            if [[ "$CONFIRM_PRODUCTION" != "DEPLOY" ]]; then
+              echo "Refusing live deployment without DEPLOY confirmation" >&2
+              exit 1
+            fi
+            if [[ "$GITHUB_REF" != "refs/heads/main" ]]; then
+              echo "Refusing live deployment from a branch other than main" >&2
+              exit 1
+            fi
           fi
 
       - name: Checkout repository
         uses: actions/checkout@v7
 
-      - name: Prepare SSH
+      - name: Configure dedicated SSH key and pinned host identity
+        shell: bash
+        env:
+          DEPLOY_PRIVATE_KEY: ${{ secrets.WEBDOCK_DEPLOY_PRIVATE_KEY }}
         run: |
-          mkdir -p ~/.ssh
-          printf '%s\n' "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/deploy_key
-          chmod 600 ~/.ssh/deploy_key
-          ssh-keyscan -p "$SSH_PORT" "$SSH_HOST" >> ~/.ssh/known_hosts
+          set -euo pipefail
+          test -n "$DEPLOY_PRIVATE_KEY"
+          install -d -m 0700 "$HOME/.ssh"
+          printf '%s\n' "$DEPLOY_PRIVATE_KEY" > "$HOME/.ssh/webdock_deploy_key"
+          chmod 0600 "$HOME/.ssh/webdock_deploy_key"
+          install -m 0600 .github/webdock_known_hosts "$HOME/.ssh/known_hosts"
 
-      - name: Test SSH connection
+      - name: Verify restricted SSH user and exact theme target
+        shell: bash
         run: |
-          ssh -i ~/.ssh/deploy_key -p "$SSH_PORT" "$SSH_USER@$SSH_HOST" "test -d '$SSH_TARGET' && echo 'Target exists: $SSH_TARGET'"
+          set -euo pipefail
+          ssh -i "$HOME/.ssh/webdock_deploy_key" -p "$SSH_PORT" \
+            -o IdentitiesOnly=yes -o BatchMode=yes \
+            -o StrictHostKeyChecking=yes -o UserKnownHostsFile="$HOME/.ssh/known_hosts" \
+            "$SSH_USER@$SSH_HOST" \
+            'test "$(id -un)" = "mrsdeploy" && test -d /var/www/mrsobolle-stage/wp-content/themes/mrsobolle && test -w /var/www/mrsobolle-stage/wp-content/themes/mrsobolle'
 
-      - name: Deploy theme files
+      - name: Archive live theme before real deployment
+        if: ${{ inputs.dry_run == 'false' }}
+        shell: bash
         run: |
-          FLAGS="-azv --delete"
-          if [ "$DRY_RUN" = "true" ]; then
-            FLAGS="$FLAGS --dry-run"
-            echo "Running in dry-run mode. No files will be changed."
+          set -euo pipefail
+          ssh -i "$HOME/.ssh/webdock_deploy_key" -p "$SSH_PORT" \
+            -o IdentitiesOnly=yes -o BatchMode=yes \
+            -o StrictHostKeyChecking=yes -o UserKnownHostsFile="$HOME/.ssh/known_hosts" \
+            "$SSH_USER@$SSH_HOST" \
+            "set -eu; mkdir -p ~/deploy-backups; tar -czf ~/deploy-backups/mrsobolle-theme-$GITHUB_RUN_ID.tar.gz -C /var/www/mrsobolle-stage/wp-content/themes mrsobolle; tar -tzf ~/deploy-backups/mrsobolle-theme-$GITHUB_RUN_ID.tar.gz >/dev/null"
+
+      - name: Synchronize theme files (dry-run by default)
+        shell: bash
+        run: |
+          set -euo pipefail
+          flags=(-rlptzv --delete-delay --delay-updates --max-delete=25 --chmod=D2775,F664 --itemize-changes)
+          if [[ "$DRY_RUN" == "true" ]]; then
+            flags+=(--dry-run)
+            echo "Preview only: no files will be changed."
           fi
-
-          rsync $FLAGS \
+          rsync "${flags[@]}" \
             --exclude-from=.deployignore \
-            -e "ssh -i ~/.ssh/deploy_key -p $SSH_PORT -o StrictHostKeyChecking=yes" \
+            -e "ssh -i $HOME/.ssh/webdock_deploy_key -p $SSH_PORT -o IdentitiesOnly=yes -o BatchMode=yes -o StrictHostKeyChecking=yes -o UserKnownHostsFile=$HOME/.ssh/known_hosts" \
             ./ "$SSH_USER@$SSH_HOST:$SSH_TARGET/"
