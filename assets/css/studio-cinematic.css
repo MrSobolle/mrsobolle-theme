@@ -1,0 +1,268 @@
+/*
+ * Sobolle Studio / Cinematic Digital Studio, v0.2.
+ * One typographic signature, one living sculpture, no permanent neon panels.
+ * All rules are scoped to the front page until approved as the site-wide system.
+ */
+body.home {
+    --studio-ink: #070a13;
+    --studio-white: #edf1f8;
+    --studio-blue: #4ca9fb;
+    --studio-violet: #896cff;
+    background: var(--studio-ink);
+    color: var(--studio-white);
+    font-family: "Manrope", "Segoe UI", sans-serif;
+    font-synthesis: none;
+}
+body.home .site-header {
+    position: relative;
+    z-index: 50;
+    border: 0;
+    box-shadow: none;
+    background: #070a13;
+    backdrop-filter: none;
+}
+body.home .site-header__inner {
+    width: min(calc(100% - clamp(2rem, 8vw, 10rem)), 1380px);
+    min-height: 82px;
+    gap: clamp(1rem, 3vw, 3.5rem);
+}
+body.home .site-branding__title {
+    font-family: "Manrope", sans-serif;
+    font-size: 1.03rem;
+    letter-spacing: -.045em;
+    font-weight: 760;
+    white-space: nowrap;
+}
+body.home .site-branding__description { display: none; }
+body.home .main-navigation__list {
+    gap: clamp(.45rem, 1.4vw, 1.6rem);
+}
+body.home .main-navigation a,
+body.home .language-switcher__link,
+body.home .hero-section__actions .button {
+    position: relative;
+    isolation: isolate;
+    overflow: visible;
+    background: transparent;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+    color: #c0c9d6;
+    font-family: "Manrope", sans-serif;
+    font-weight: 550;
+    font-size: .93rem;
+    text-decoration: none;
+    white-space: nowrap;
+    transform: translate3d(0,0,0);
+    transition: color 360ms ease, transform 450ms cubic-bezier(.2,.7,.25,1);
+}
+body.home .main-navigation a {display: inline-flex; align-items: center; min-height: 42px; padding: .35rem .65rem;}
+body.home .language-switcher__link {min-height: 35px; padding: .35rem .48rem; font-size: .81rem;}
+body.home .language-switcher__link.is-current {
+    background: none;
+    border: 0;
+    color: #eff2f8;
+    font-weight: 700;
+}
+body.home .main-navigation a::before,
+body.home .language-switcher__link::before,
+body.home .hero-section__actions .button::before {
+    content: "";
+    position: absolute;
+    inset: -13px -19px;
+    z-index: -1;
+    pointer-events: none;
+    border-radius: 48%;
+    background: radial-gradient(
+        ellipse at var(--studio-pointer-x, 50%) var(--studio-pointer-y, 50%),
+        rgba(85, 160, 255, .42) 0%,
+        rgba(108, 95, 232, .25) 36%,
+        transparent 72%
+    );
+    filter: blur(12px);
+    opacity: 0;
+    transform: scale(.86) rotate(-9deg);
+    transition: opacity 450ms ease, transform 600ms cubic-bezier(.22,.7,.2,1);
+}
+body.home .main-navigation a:hover,
+body.home .main-navigation a:focus-visible,
+body.home .language-switcher__link:hover,
+body.home .language-switcher__link:focus-visible,
+body.home .hero-section__actions .button:hover,
+body.home .hero-section__actions .button:focus-visible {
+    color: #fff;
+    background: transparent;
+    transform: translate3d(0, -2px, 0);
+}
+body.home .main-navigation a:is(:hover,:focus-visible)::before,
+body.home .language-switcher__link:is(:hover,:focus-visible)::before,
+body.home .hero-section__actions .button:is(:hover,:focus-visible)::before {
+    opacity: .9;
+    transform: scale(1.05) rotate(4deg);
+    animation: studio-hover-breathe 2.8s ease-in-out infinite alternate;
+}
+@keyframes studio-hover-breathe {
+    from {filter: blur(12px);transform:scale(1.01) rotate(-5deg);}
+    to {filter: blur(16px);transform:scale(1.13) rotate(5deg);}
+}
+body.home .hero-section--studio {
+    position: relative;
+    min-height: min(870px, calc(100svh - 82px));
+    padding: clamp(5rem, 11vh, 8rem) 0 6rem;
+    background:
+        radial-gradient(ellipse at 80% 52%, rgba(29, 49, 99, .19), transparent 48%),
+        #070a13;
+    overflow: hidden;
+    isolation: isolate;
+}
+body.home .hero-section--studio::before {
+    content: "";
+    position: absolute;
+    z-index: 1;
+    inset: 0;
+    pointer-events: none;
+    background: linear-gradient(90deg, rgba(7, 10, 19, .86) 0%, rgba(7, 10, 19, .65) 28%, transparent 64%);
+}
+body.home .hero-section--studio .hero-section__inner {
+    width: min(calc(100% - clamp(2rem, 8vw, 10rem)), 1380px);
+    position: relative;
+    z-index: 3;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    pointer-events: none;
+    align-items: center;
+}
+body.home .hero-section--studio .hero-section__content {
+    max-width: 630px;
+    pointer-events: auto;
+}
+body.home .hero-section--studio .hero-section__title {
+    margin: 0;
+    max-width: 640px;
+    color: #f0f3fa;
+    font-weight: 720;
+    text-wrap: normal;
+    font-style: normal;
+}
+body.home .studio-hero__wordmark {
+    display: block;
+    width: max-content;
+    max-width: 100%;
+    color: #f0f3fa;
+    font-family: "Unbounded", "Manrope", sans-serif;
+    font-weight: 780;
+    font-size: clamp(3.4rem, 6.7vw, 7.5rem);
+    line-height: 1.12;
+    letter-spacing: -.082em;
+    -webkit-mask-image: repeating-linear-gradient(to bottom, #000 0 8px, transparent 8px 12px);
+    mask-image: repeating-linear-gradient(to bottom, #000 0 8px, transparent 8px 12px);
+}
+body.home .studio-hero__studio {
+    display: block;
+    color: #d4dce9;
+    font-family: "Manrope", sans-serif;
+    font-weight: 360;
+    font-size: clamp(2.9rem, 5vw, 5rem);
+    line-height: 1;
+    letter-spacing: -.055em;
+}
+body.home .hero-section--studio .hero-section__lead {
+    max-width: 410px;
+    margin: clamp(2rem, 4.5vh, 3.5rem) 0 0;
+    font-family: "Manrope", sans-serif;
+    font-weight: 420;
+    font-size: clamp(1.04rem, 1.5vw, 1.35rem);
+    line-height: 1.55;
+    letter-spacing: -.025em;
+    color: #abb8ca;
+    text-wrap: pretty;
+}
+body.home .hero-section--studio .hero-section__actions {
+    gap: clamp(1.1rem, 3vw, 3.5rem);
+    margin-top: clamp(2.4rem, 5vw, 4rem);
+    flex-wrap: wrap;
+}
+body.home .hero-section__actions .button {
+    min-height: 54px;
+    padding: .7rem 1rem;
+    font-size: clamp(.99rem, 1.15vw, 1.1rem);
+    font-weight: 680;
+    line-height: 1.2;
+    display: inline-flex;
+    gap: .8rem;
+}
+body.home .hero-section__actions .button--primary {color: #f6f8fc;}
+body.home .hero-section__actions .button--secondary {color: #b2bed0;}
+body.home .hero-section__actions .button::before {inset: -21px -27px;filter:blur(17px);}
+body.home .studio-hero__link-arrow {font-size: 1.25em;opacity: .72;transition:transform 450ms ease;}
+body.home .hero-section__actions .button:is(:hover,:focus-visible) .studio-hero__link-arrow {transform:translate3d(3px,-3px,0);}
+body.home .studio-hero__art {
+    position: absolute;
+    z-index: 0;
+    inset: -3% -7% -3% 35%;
+    pointer-events: none;
+    opacity: .94;
+    overflow: hidden;
+}
+body.home .studio-hero__art canvas {display:block;width:100%;height:100%;}
+body.home .studio-hero__static-object {
+    position: absolute;
+    width: min(64vw, 740px);
+    aspect-ratio: 1.55;
+    left: 11%;
+    top: 24%;
+    background: radial-gradient(ellipse at 46% 50%,transparent 36%,rgba(58, 108, 215, .4) 45%,rgba(109, 87, 192, .4) 55%, transparent 65%);
+    filter:blur(10px);
+    transform: rotate(-22deg);
+    opacity: .7;
+    box-shadow: none;
+}
+body.home .studio-hero__art.has-webgl .studio-hero__static-object {display:none;}
+body.home .hero-section--studio .hero-section__panel,
+body.home .hero-section--studio .hero-section__eyebrow,
+body.home .hero-section--studio .studio-hero__credit {display:none;}
+@media (max-width: 980px) {
+    body.home .site-header__inner { flex-wrap: wrap; gap:.4rem 1.4rem; padding-block:.65rem; }
+    body.home .hero-section--studio {min-height:730px;}
+    body.home .studio-hero__art {inset: -1% -7% 18% 19%;opacity:.65;}
+}
+@media (max-width: 640px) {
+    body.home .site-header__inner,
+    body.home .hero-section--studio .hero-section__inner {width:calc(100% - 2rem);}
+    body.home .site-header__inner {align-items:flex-start; gap:.15rem .8rem;}
+    body.home .site-branding {width:100%;}
+    body.home .main-navigation__list {gap:.15rem;}
+    body.home .main-navigation a {padding:.27rem .52rem;min-height:36px;font-size:.8rem;}
+    body.home .language-switcher__list {gap:0;flex-wrap:wrap;}
+    body.home .language-switcher__link {padding:.22rem .42rem;font-size:.75rem;min-height:32px;}
+    body.home .hero-section--studio {min-height:670px;padding:4.4rem 0 4.6rem;align-items:flex-end;}
+    body.home .hero-section--studio::before {background:linear-gradient(180deg,transparent 12%,rgba(7,10,19,.24) 36%,rgba(7,10,19,.78) 67%,rgba(7,10,19,.96));}
+    body.home .hero-section--studio .hero-section__content {max-width:100%;}
+    body.home .studio-hero__wordmark {
+        font-size:clamp(2.8rem, 11vw, 4.5rem);
+        line-height:1.13;
+        -webkit-mask-image:repeating-linear-gradient(to bottom,#000 0 5px,transparent 5px 8px);
+        mask-image:repeating-linear-gradient(to bottom,#000 0 5px,transparent 5px 8px);
+    }
+    body.home .studio-hero__studio {font-size:clamp(2.6rem,9.3vw,3.6rem);}
+    body.home .hero-section--studio .hero-section__lead {margin-top:1.9rem;max-width:32ch;font-size:1.05rem;}
+    body.home .hero-section--studio .hero-section__actions {gap:.5rem 1.25rem;margin-top:2rem;}
+    body.home .hero-section__actions .button {min-height:48px;font-size:.98rem;padding:.4rem .6rem;}
+    body.home .studio-hero__art {inset:-1% -22% 23% 5%;opacity:.64;}
+}
+@media (prefers-reduced-motion: reduce) {
+    body.home .studio-hero__art {opacity:.47;}
+    body.home .main-navigation a,
+    body.home .language-switcher__link,
+    body.home .hero-section__actions .button,
+    body.home .studio-hero__link-arrow {transition:none;transform:none!important;}
+    body.home .main-navigation a::before,
+    body.home .language-switcher__link::before,
+    body.home .hero-section__actions .button::before {animation:none;transition:none;transform:none;}
+}
+@media (forced-colors: active) {
+    body.home .studio-hero__wordmark {-webkit-mask-image:none;mask-image:none;}
+    body.home .main-navigation a::before,
+    body.home .language-switcher__link::before,
+    body.home .hero-section__actions .button::before {display:none;}
+}

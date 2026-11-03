@@ -154,3 +154,6 @@ msgstr "Proyectos"
 
 msgid "© %1$s %2$s. All rights reserved."
 msgstr "© %1$s %2$s. Todos los derechos reservados."
+
+msgid "Software products, web solutions and engineering."
+msgstr "Productos de software, soluciones web e ingeniería."

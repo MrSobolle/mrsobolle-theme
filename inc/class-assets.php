@@ -61,6 +61,20 @@ final class Assets {
      * Enqueues main frontend script.
      */
     private function enqueue_studio_scripts(): void {
+        $font_style = '/assets/css/studio-fonts.css';
+        $studio_style = '/assets/css/studio-cinematic.css';
+        wp_enqueue_style(
+            'mrsobolle-studio-fonts',
+            get_template_directory_uri() . $font_style,
+            [ 'mrsobolle-main' ],
+            (string) filemtime( get_template_directory() . $font_style )
+        );
+        wp_enqueue_style(
+            'mrsobolle-studio-cinematic',
+            get_template_directory_uri() . $studio_style,
+            [ 'mrsobolle-studio-fonts' ],
+            (string) filemtime( get_template_directory() . $studio_style )
+        );
         $gsap = '/assets/vendor/gsap.min.js';
         $hero = '/assets/js/studio-hero.js';
         if ( ! file_exists( get_template_directory() . $gsap ) || ! file_exists( get_template_directory() . $hero ) ) {

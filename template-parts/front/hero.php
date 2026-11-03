@@ -1,92 +1,51 @@
 <?php
 /**
- * Front page hero section.
- *
+ * Cinematic Studio hero: semantic H1, typography mask in CSS.
  * @package MrSobolle
  */
-
 defined( 'ABSPATH' ) || exit;
-
-$eyebrow = isset( $eyebrow ) ? (string) $eyebrow : '';
-$title   = isset( $title ) ? (string) $title : '';
 $lead    = isset( $lead ) ? (string) $lead : '';
 $actions = isset( $actions ) && is_array( $actions ) ? $actions : [];
-$profile = isset( $profile ) && is_array( $profile ) ? $profile : [];
-
-$profile_label = isset( $profile['label'] ) ? (string) $profile['label'] : '';
-$profile_items = isset( $profile['items'] ) && is_array( $profile['items'] ) ? $profile['items'] : [];
 ?>
-
-<section class="hero-section hero-section--studio" data-studio-hero>
-    <div class="studio-hero__art" aria-hidden="true" data-studio-art data-three-module="<?php echo esc_url( get_theme_file_uri( '/assets/vendor/three.module.js' ) ); ?>">
-    <div class="studio-hero__static-object"></div>
-</div>
-<div class="container hero-section__inner">
-
+<section class="hero-section hero-section--studio" data-studio-hero aria-labelledby="studio-hero-title">
+    <div
+        class="studio-hero__art"
+        aria-hidden="true"
+        data-studio-art
+        data-three-module="<?php echo esc_url( get_theme_file_uri( '/assets/vendor/three.module.js' ) ); ?>"
+    >
+        <div class="studio-hero__static-object"></div>
+    </div>
+    <div class="container hero-section__inner">
         <div class="hero-section__content">
-            <?php if ( '' !== $eyebrow ) : ?>
-                <p class="hero-section__eyebrow">
-                    <?php echo esc_html( $eyebrow ); ?>
-                </p>
-            <?php endif; ?>
-
-            <?php if ( '' !== $title ) : ?>
-                <h1 class="hero-section__title">
-                    <?php echo esc_html( "Sobolle Studio" ); ?>
-                </h1>
-            <?php endif; ?>
-
+            <h1 class="hero-section__title" id="studio-hero-title">
+                <span class="studio-hero__wordmark">Sobolle</span>
+                <span class="studio-hero__studio">Studio</span>
+            </h1>
             <?php if ( '' !== $lead ) : ?>
-                <p class="hero-section__lead">
-                    <?php echo esc_html( $lead ); ?>
-                </p>
+                <p class="hero-section__lead"><?php echo esc_html( $lead ); ?></p>
             <?php endif; ?>
-
             <?php if ( ! empty( $actions ) ) : ?>
-                <p class="studio-hero__credit"><?php echo esc_html( $title ); ?> / <?php echo esc_html( $eyebrow ); ?></p>
-            <div class="hero-section__actions">
+                <div class="hero-section__actions">
                     <?php foreach ( $actions as $action ) : ?>
                         <?php
                         if ( ! is_array( $action ) ) {
                             continue;
                         }
-
                         $action_label = isset( $action['label'] ) ? (string) $action['label'] : '';
                         $action_url   = isset( $action['url'] ) ? (string) $action['url'] : '';
                         $action_style = isset( $action['style'] ) ? sanitize_html_class( (string) $action['style'] ) : 'secondary';
-
                         if ( '' === $action_label || '' === $action_url ) {
                             continue;
                         }
                         ?>
-
-                        <a class="button button--<?php echo esc_attr( $action_style ); ?>" href="<?php echo esc_url( $action_url ); ?>">
-                            <?php echo esc_html( $action_label ); ?>
+                        <a class="button button--<?php echo esc_attr( $action_style ); ?> studio-hero__link" href="<?php echo esc_url( $action_url ); ?>">
+                            <span class="studio-hero__link-label"><?php echo esc_html( $action_label ); ?></span>
+                            <span class="studio-hero__link-arrow" aria-hidden="true">&#8599;</span>
                         </a>
                     <?php endforeach; ?>
                 </div>
             <?php endif; ?>
         </div>
-
-        <?php if ( '' !== $profile_label || ! empty( $profile_items ) ) : ?>
-            <div class="hero-section__panel" aria-label="<?php echo esc_attr( $profile_label ); ?>">
-                <div class="profile-card">
-                    <?php if ( '' !== $profile_label ) : ?>
-                        <p class="profile-card__label">
-                            <?php echo esc_html( $profile_label ); ?>
-                        </p>
-                    <?php endif; ?>
-
-                    <?php if ( ! empty( $profile_items ) ) : ?>
-                        <ul class="profile-card__list">
-                            <?php foreach ( $profile_items as $item ) : ?>
-                                <li><?php echo esc_html( (string) $item ); ?></li>
-                            <?php endforeach; ?>
-                        </ul>
-                    <?php endif; ?>
-                </div>
-            </div>
-        <?php endif; ?>
-
     </div>
 </section>

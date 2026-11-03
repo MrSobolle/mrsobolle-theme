@@ -14,7 +14,7 @@ $decode = static function ( string $bytes ): array {
     }
 
     $header = unpack( 'Vmagic/Vrevision/Vcount/Vorig/Vtrans/Vhashsize/Vhashoffset', substr( $bytes, 0, 28 ) );
-    if ( $header['magic'] !== 0x950412de || $header['revision'] !== 0 || $header['count'] !== 50 ) {
+    if ( $header['magic'] !== 0x950412de || $header['revision'] !== 0 || $header['count'] !== 51 ) {
         throw new RuntimeException( 'Unexpected MO header or entry count' );
     }
 
@@ -46,7 +46,7 @@ foreach ( $expected as $locale ) {
     }
 
     foreach ( [ 'About', 'Work', 'Apps', 'Language', 'View projects',
-        'Software Engineer / PHP & WordPress', 'Software engineering from architecture to delivery.' ] as $source ) {
+        'Software Engineer / PHP & WordPress', 'Software engineering from architecture to delivery.', 'Software products, web solutions and engineering.' ] as $source ) {
         if ( ! isset( $messages[ $source ] ) || $messages[ $source ] === '' ) {
             throw new RuntimeException( "Missing translation: $locale $source" );
         }

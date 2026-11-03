@@ -39,16 +39,16 @@ final class Page_Data {
         return [
             'eyebrow' => $owner['role'],
             'title'   => $owner['name'],
-            'lead'    => __( 'I build maintainable software with PHP, WordPress, data pipelines and automation. I focus on dependable architecture and practical outcomes.', 'mrsobolle' ),
+            'lead'    => __( 'Software products, web solutions and engineering.', 'mrsobolle' ),
             'actions' => [
                 [
-                    'label' => __( 'View projects', 'mrsobolle' ),
-                    'url'   => Directory_Data::directory_url( 'work' ) ?: '#projects',
+                    'label' => __( 'Explore apps', 'mrsobolle' ),
+                    'url'   => Directory_Data::directory_url( 'apps' ) ?: '#projects',
                     'style' => 'primary',
                 ],
                 [
-                    'label' => __( 'Contact me', 'mrsobolle' ),
-                    'url'   => '#contact',
+                    'label' => __( 'Explore work', 'mrsobolle' ),
+                    'url'   => Directory_Data::directory_url( 'work' ) ?: '#projects',
                     'style' => 'secondary',
                 ],
             ],

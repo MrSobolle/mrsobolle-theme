@@ -154,3 +154,6 @@ msgstr "Работы"
 
 msgid "© %1$s %2$s. All rights reserved."
 msgstr "© %1$s %2$s. Все права защищены."
+
+msgid "Software products, web solutions and engineering."
+msgstr "Программные продукты, веб-решения и инженерная разработка."
