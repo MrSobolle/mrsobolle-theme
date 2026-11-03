@@ -152,10 +152,12 @@ body.home .studio-hero__wordmark {
     font-family: "Unbounded", "Manrope", sans-serif;
     font-weight: 780;
     font-size: clamp(3.4rem, 6.7vw, 7.5rem);
-    line-height: 1.12;
+    /* A little cap/baseline breathing room keeps the glyph silhouette intact. */
+    line-height: 1.16;
+    padding-block: .085em .115em;
     letter-spacing: -.082em;
-    -webkit-mask-image: repeating-linear-gradient(to bottom, #000 0 8px, transparent 8px 12px);
-    mask-image: repeating-linear-gradient(to bottom, #000 0 8px, transparent 8px 12px);
+    -webkit-mask-image: repeating-linear-gradient(to bottom, #000 0 9px, transparent 9px 13px);
+    mask-image: repeating-linear-gradient(to bottom, #000 0 9px, transparent 9px 13px);
 }
 body.home .studio-hero__studio {
     display: block;
@@ -199,9 +201,9 @@ body.home .hero-section__actions .button:is(:hover,:focus-visible) .studio-hero_
 body.home .studio-hero__art {
     position: absolute;
     z-index: 0;
-    inset: -3% -7% -3% 35%;
+    inset: 4% -6% 8% 40%;
     pointer-events: none;
-    opacity: .94;
+    opacity: .9;
     overflow: hidden;
 }
 body.home .studio-hero__art canvas {display:block;width:100%;height:100%;}
@@ -224,7 +226,7 @@ body.home .hero-section--studio .studio-hero__credit {display:none;}
 @media (max-width: 980px) {
     body.home .site-header__inner { flex-wrap: wrap; gap:.4rem 1.4rem; padding-block:.65rem; }
     body.home .hero-section--studio {min-height:730px;}
-    body.home .studio-hero__art {inset: -1% -7% 18% 19%;opacity:.65;}
+    body.home .studio-hero__art {inset: 1% -7% 25% 21%;opacity:.63;}
 }
 @media (max-width: 640px) {
     body.home .site-header__inner,
@@ -240,7 +242,8 @@ body.home .hero-section--studio .studio-hero__credit {display:none;}
     body.home .hero-section--studio .hero-section__content {max-width:100%;}
     body.home .studio-hero__wordmark {
         font-size:clamp(2.8rem, 11vw, 4.5rem);
-        line-height:1.13;
+        line-height:1.17;
+        padding-block:.08em .105em;
         -webkit-mask-image:repeating-linear-gradient(to bottom,#000 0 5px,transparent 5px 8px);
         mask-image:repeating-linear-gradient(to bottom,#000 0 5px,transparent 5px 8px);
     }
@@ -248,7 +251,7 @@ body.home .hero-section--studio .studio-hero__credit {display:none;}
     body.home .hero-section--studio .hero-section__lead {margin-top:1.9rem;max-width:32ch;font-size:1.05rem;}
     body.home .hero-section--studio .hero-section__actions {gap:.5rem 1.25rem;margin-top:2rem;}
     body.home .hero-section__actions .button {min-height:48px;font-size:.98rem;padding:.4rem .6rem;}
-    body.home .studio-hero__art {inset:-1% -22% 23% 5%;opacity:.64;}
+    body.home .studio-hero__art {inset:0 -17% 31% 13%;opacity:.55;}
 }
 @media (prefers-reduced-motion: reduce) {
     body.home .studio-hero__art {opacity:.47;}
@@ -265,4 +268,46 @@ body.home .hero-section--studio .studio-hero__credit {display:none;}
     body.home .main-navigation a::before,
     body.home .language-switcher__link::before,
     body.home .hero-section__actions .button::before {display:none;}
+}
+/* A second translucent light cloud drifts around the active link, never a border. */
+body.home .main-navigation a::after,
+body.home .language-switcher__link::after,
+body.home .hero-section__actions .button::after {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    inset: -15px -17px;
+    border-radius: 48%;
+    pointer-events: none;
+    background:
+        radial-gradient(ellipse 55% 45% at 28% 65%, rgba(56, 169, 255, .3), transparent 90%),
+        radial-gradient(ellipse 60% 47% at 77% 33%, rgba(118, 88, 241, .24), transparent 90%);
+    filter: blur(9px);
+    opacity: 0;
+    transform: scale(.9);
+    transition: opacity 440ms ease, transform 560ms ease;
+}
+body.home .main-navigation a:is(:hover,:focus-visible)::after,
+body.home .language-switcher__link:is(:hover,:focus-visible)::after,
+body.home .hero-section__actions .button:is(:hover,:focus-visible)::after {
+    opacity: .85;
+    animation: studio-halo-drift 3.2s ease-in-out infinite alternate;
+}
+@keyframes studio-halo-drift {
+    from { transform: translate3d(-5%, 3%, 0) rotate(-9deg) scale(.89); }
+    to { transform: translate3d(7%, -4%, 0) rotate(10deg) scale(1.13); }
+}
+@media (prefers-reduced-motion: reduce) {
+    body.home .main-navigation a::after,
+    body.home .language-switcher__link::after,
+    body.home .hero-section__actions .button::after {
+        animation: none !important;
+        transition: none;
+        transform: none;
+    }
+}
+@media (forced-colors: active) {
+    body.home .main-navigation a::after,
+    body.home .language-switcher__link::after,
+    body.home .hero-section__actions .button::after {display:none;}
 }
