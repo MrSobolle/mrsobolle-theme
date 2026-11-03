@@ -356,3 +356,157 @@ body.home .studio-hero__static-object {
     body.home .studio-hero__art {opacity:.32;}
     body.home .hero-section--studio::after {opacity:.22;}
 }
+
+/* Studio disciplines: What I build. */
+body.home .studio-directions {
+    padding: clamp(4.75rem, 8.5vw, 8.5rem) 0 clamp(5rem, 8vw, 8rem);
+    background: #080b15;
+    color: #edf1f8;
+}
+body.home .studio-directions__inner {
+    width: min(calc(100% - clamp(2rem, 8vw, 10rem)), 1380px);
+}
+body.home .studio-directions__header {
+    display: grid;
+    grid-template-columns: minmax(0, .5fr) minmax(0, 1fr);
+    gap: clamp(2rem, 6vw, 8rem);
+    align-items: start;
+    margin-bottom: clamp(3.1rem, 6vw, 6.2rem);
+}
+body.home .studio-directions__eyebrow {
+    margin: .45rem 0 0;
+    color: #98add1;
+    font-size: .8rem;
+    font-weight: 660;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+}
+body.home .studio-directions__heading {
+    margin: 0;
+    max-width: 17ch;
+    font-family: "Manrope", sans-serif;
+    font-size: clamp(2rem, 4.1vw, 4.6rem);
+    font-weight: 510;
+    line-height: 1.16;
+    letter-spacing: -.06em;
+    text-wrap: balance;
+}
+body.home .studio-directions__grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: clamp(2rem, 6vw, 7rem);
+}
+body.home .studio-direction {
+    display: grid;
+    grid-template-rows: auto 1fr;
+    min-width: 0;
+    padding-top: 1.7rem;
+    border-top: 1px solid rgba(149, 168, 210, .22);
+}
+body.home .studio-direction__number {
+    display: block;
+    margin-bottom: clamp(1.8rem, 4vw, 3.8rem);
+    color: #6980b1;
+    font-size: .78rem;
+    font-weight: 640;
+    letter-spacing: .16em;
+    font-variant-numeric: tabular-nums;
+}
+body.home .studio-direction__body {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    min-width: 0;
+}
+body.home .studio-direction__title {
+    margin: 0;
+    max-width: 100%;
+    overflow-wrap: break-word;
+    font-size: clamp(1.7rem, 2.7vw, 2.8rem);
+    font-family: "Manrope", sans-serif;
+    font-weight: 640;
+    line-height: 1.18;
+    letter-spacing: -.05em;
+    text-wrap: balance;
+}
+body.home .studio-direction__text {
+    margin: 1.15rem 0 1.7rem;
+    max-width: min(42ch, 100%);
+    color: #a1aec3;
+    font-size: clamp(.99rem, 1.13vw, 1.11rem);
+    font-weight: 410;
+    line-height: 1.7;
+    text-wrap: pretty;
+}
+body.home .studio-direction__link {
+    display: inline-flex;
+    align-items: center;
+    gap: .8rem;
+    min-height: 44px;
+    margin-top: auto;
+    align-self: flex-start;
+    padding: .3rem .25rem;
+    position: relative;
+    isolation: isolate;
+    color: #d7e6fd;
+    font-weight: 690;
+    font-size: .98rem;
+    transition: color 350ms ease, transform 400ms ease;
+}
+body.home .studio-direction__link::before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    pointer-events: none;
+    inset: -12px -17px;
+    border-radius: 48%;
+    background: radial-gradient(ellipse at 50% 50%, rgba(81, 153, 252, .38), rgba(119, 88, 226, .2) 37%, transparent 74%);
+    filter: blur(13px);
+    opacity: 0;
+    transform: scale(.84);
+    transition: opacity 380ms ease, transform 540ms ease;
+}
+body.home .studio-direction__link:is(:hover,:focus-visible) {
+    color: #fff;
+    transform: translate3d(0, -2px, 0);
+}
+body.home .studio-direction__link:is(:hover,:focus-visible)::before {
+    opacity: .94;
+    transform: scale(1.06);
+}
+body.home .studio-direction__arrow {
+    display: inline-block;
+    opacity: .8;
+    transition: transform 350ms ease;
+}
+body.home .studio-direction__link:is(:hover,:focus-visible) .studio-direction__arrow {
+    transform: translate3d(3px, -3px, 0);
+}
+body.home .studio-direction__link:focus-visible {
+    outline: 2px solid #8cb9ff;
+    outline-offset: 5px;
+}
+@media (max-width: 760px) {
+    body.home .studio-directions__header,
+    body.home .studio-directions__grid {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 2rem;
+    }
+    body.home .studio-directions__header { margin-bottom: 2.6rem; gap: 1.2rem; }
+    body.home .studio-directions__heading { font-size: clamp(2rem, 8vw, 3.3rem); }
+    body.home .studio-direction { padding-top: 1.4rem; }
+    body.home .studio-direction__number { margin-bottom: 1.45rem; }
+    body.home .studio-direction__text { margin-bottom: 1rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+    body.home .studio-direction__link,
+    body.home .studio-direction__link::before,
+    body.home .studio-direction__arrow {
+        transition: none;
+        transform: none !important;
+    }
+}
+@media (forced-colors: active) {
+    body.home .studio-direction__link::before { display: none; }
+    body.home .studio-direction { border-top-color: CanvasText; }
+}

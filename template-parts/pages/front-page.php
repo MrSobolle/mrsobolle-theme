@@ -12,18 +12,20 @@ defined( 'ABSPATH' ) || exit;
 
 $data = Page_Data::front_page();
 
-$hero_data     = isset( $data['hero'] ) && is_array( $data['hero'] ) ? $data['hero'] : [];
-$about_data    = isset( $data['about'] ) && is_array( $data['about'] ) ? $data['about'] : [];
-$projects_data = isset( $data['projects'] ) && is_array( $data['projects'] ) ? $data['projects'] : [];
-$contact_data  = isset( $data['contact'] ) && is_array( $data['contact'] ) ? $data['contact'] : [];
+$hero_data       = isset( $data['hero'] ) && is_array( $data['hero'] ) ? $data['hero'] : [];
+$directions_data = isset( $data['directions'] ) && is_array( $data['directions'] ) ? $data['directions'] : [];
+$projects_data   = isset( $data['projects'] ) && is_array( $data['projects'] ) ? $data['projects'] : [];
+$about_data      = isset( $data['about'] ) && is_array( $data['about'] ) ? $data['about'] : [];
+$contact_data    = isset( $data['contact'] ) && is_array( $data['contact'] ) ? $data['contact'] : [];
 ?>
 
 <main id="primary" class="site-main front-page">
 
     <?php
     View::render( 'front/hero', $hero_data );
-    View::render( 'front/about', $about_data );
+    View::render( 'front/directions', $directions_data );
     View::render( 'front/projects', $projects_data );
+    View::render( 'front/about', $about_data );
     View::render( 'front/contact', $contact_data );
     ?>
 

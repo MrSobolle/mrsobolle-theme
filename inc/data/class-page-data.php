@@ -21,10 +21,11 @@ final class Page_Data {
      */
     public static function front_page(): array {
         return [
-            'hero'     => self::get_hero_data(),
-            'about'    => self::get_about_data(),
-            'projects' => self::get_projects_data(),
-            'contact'  => self::get_contact_data(),
+            'hero'       => self::get_hero_data(),
+            'directions' => self::get_directions_data(),
+            'projects'   => self::get_projects_data(),
+            'about'      => self::get_about_data(),
+            'contact'    => self::get_contact_data(),
         ];
     }
 
@@ -59,6 +60,50 @@ final class Page_Data {
                     __( 'PHP architecture', 'mrsobolle' ),
                     __( 'Data import and automation', 'mrsobolle' ),
                     __( 'SEO-oriented structures', 'mrsobolle' ),
+                ],
+            ],
+        ];
+    }
+
+    /**
+     * Public areas of work. Unpublished developer tools link to the Apps
+     * catalogue, while WideCrop links to its actual translated product page.
+     *
+     * @return array<string, mixed>
+     */
+    private static function get_directions_data(): array {
+        $apps_page    = Directory_Data::directory_page( 'page-templates/apps-catalog.php' );
+        $apps_url     = $apps_page ? (string) get_permalink( $apps_page ) : '';
+        $widecrop_url = $apps_url;
+
+        if ( $apps_page ) {
+            foreach ( Directory_Data::children( (int) $apps_page->ID ) as $product ) {
+                if ( 'widecrop' === $product->post_name ) {
+                    $widecrop_url = (string) get_permalink( $product );
+                    break;
+                }
+            }
+        }
+
+        return [
+            'kicker' => __( 'What I build', 'mrsobolle' ),
+            'title'  => __( 'Independent software for practical problems.', 'mrsobolle' ),
+            'items'  => [
+                [
+                    'number'     => '01',
+                    'title'      => __( 'AI & Developer Tools', 'mrsobolle' ),
+                    'text'       => __( 'AI integrations, automation and utilities for local developer workflows.', 'mrsobolle' ),
+                    'url'        => $apps_url,
+                    'link_label' => __( 'Explore apps', 'mrsobolle' ),
+                ],
+                [
+                    'number'     => '02',
+                    'title'      => __( 'Browser Extensions', 'mrsobolle' ),
+                    'text'       => __( 'WideCrop brings flexible video framing to ultrawide screens.', 'mrsobolle' ),
+                    'url'        => $widecrop_url,
+                    'link_label' => $widecrop_url !== $apps_url
+                        ? __( 'Explore WideCrop', 'mrsobolle' )
+                        : __( 'Explore apps', 'mrsobolle' ),
                 ],
             ],
         ];

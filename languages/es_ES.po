@@ -157,3 +157,24 @@ msgstr "© %1$s %2$s. Todos los derechos reservados."
 
 msgid "Software products, web solutions and engineering."
 msgstr "Productos de software, soluciones web e ingeniería."
+
+msgid "What I build"
+msgstr "Lo que desarrollo"
+
+msgid "Independent software for practical problems."
+msgstr "Software independiente para necesidades reales."
+
+msgid "AI & Developer Tools"
+msgstr "IA y herramientas para desarrolladores"
+
+msgid "AI integrations, automation and utilities for local developer workflows."
+msgstr "Integraciones de IA, automatización y utilidades para flujos de trabajo de desarrollo locales."
+
+msgid "Browser Extensions"
+msgstr "Extensiones de navegador"
+
+msgid "WideCrop brings flexible video framing to ultrawide screens."
+msgstr "WideCrop permite ajustar el encuadre del vídeo a pantallas ultraanchas."
+
+msgid "Explore WideCrop"
+msgstr "Descubrir WideCrop"
