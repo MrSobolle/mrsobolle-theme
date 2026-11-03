@@ -44,7 +44,7 @@
         renderer.setClearColor(0x000000, 0);
         renderer.outputColorSpace = THREE.SRGBColorSpace;
         renderer.toneMapping = THREE.ACESFilmicToneMapping;
-        renderer.toneMappingExposure = 1.05;
+        renderer.toneMappingExposure = .95;
 
         const scene = new THREE.Scene();
         const camera = new THREE.PerspectiveCamera(34, 1, 0.1, 100);
@@ -142,15 +142,15 @@
 
         const material = new THREE.MeshPhysicalMaterial({
             side: THREE.DoubleSide, vertexColors: true,
-            metalness: .73, roughness: .095, clearcoat: 1,
-            clearcoatRoughness: .08, envMapIntensity: 2.05,
-            transparent: true, opacity: .7, depthWrite: false
+            metalness: .79, roughness: .105, clearcoat: 1,
+            clearcoatRoughness: .09, envMapIntensity: 1.85,
+            transparent: true, opacity: .46, depthWrite: false
         });
         sculpture.add(new THREE.Mesh(geometry, material));
 
         const contourGeometries = [], contourMaterials = [];
-        for (let c = 0; c <= 8; c++) {
-            const v = (c / 8 - .5) * 1.1;
+        for (let c = 0; c <= 22; c++) {
+            const v = (c / 22 - .5) * 1.1;
             const coords = [];
             for (let n = 0; n <= sections; n++) {
                 const p = ribbonPoint(n / sections * Math.PI * 2, v);
@@ -159,8 +159,8 @@
             const lineGeometry = new THREE.BufferGeometry();
             lineGeometry.setAttribute('position', new THREE.Float32BufferAttribute(coords, 3));
             const lineMaterial = new THREE.LineBasicMaterial({
-                color: c % 3 === 0 ? 0xb2dfff : 0xb5a2f7,
-                transparent: true, opacity: c === 0 || c === 8 ? .45 : .13,
+                color: c % 5 === 0 ? 0xaedfff : 0xb2a5f7,
+                transparent: true, opacity: c === 0 || c === 22 ? .52 : .14,
                 depthWrite: false
             });
             sculpture.add(new THREE.Line(lineGeometry, lineMaterial));
@@ -168,12 +168,12 @@
             contourMaterials.push(lineMaterial);
         }
         scene.add(sculpture);
-        scene.add(new THREE.AmbientLight(0xa0bbff, .6));
-        const blue = new THREE.PointLight(0x68caff, 36);
+        scene.add(new THREE.AmbientLight(0xa0bbff, .53));
+        const blue = new THREE.PointLight(0x68caff, 29);
         blue.position.set(-3.8, 2.6, 4.8); scene.add(blue);
-        const violet = new THREE.PointLight(0x7559ec, 30);
+        const violet = new THREE.PointLight(0x7559ec, 24);
         violet.position.set(3, -2.7, 3.9); scene.add(violet);
-        const rim = new THREE.PointLight(0xc8deff, 25);
+        const rim = new THREE.PointLight(0xc8deff, 20);
         rim.position.set(1.9, 1.7, -3.9); scene.add(rim);
 
         const target = {x: 0, y: 0};
@@ -184,7 +184,7 @@
             const w = Math.max(1, art.clientWidth), h = Math.max(1, art.clientHeight);
             camera.aspect = w / h; camera.updateProjectionMatrix();
             renderer.setSize(w, h, false);
-            sculpture.scale.setScalar(w < 580 ? .79 : 1.03);
+            sculpture.scale.setScalar(w < 580 ? .98 : 1.43);
         };
         const move = (event) => {
             if (!fine.matches) return;
@@ -227,6 +227,7 @@
                 sculpture.rotation.x += (x - sculpture.rotation.x) * .055;
                 sculpture.rotation.y += (y - sculpture.rotation.y) * .055;
                 sculpture.rotation.z += (z - sculpture.rotation.z) * .055;
+                sculpture.position.y = .06 + Math.sin(t * .23) * .12;
                 renderer.render(scene, camera);
             }
             requestAnimationFrame(draw);

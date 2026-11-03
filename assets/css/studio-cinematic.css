@@ -311,3 +311,48 @@ body.home .hero-section__actions .button:is(:hover,:focus-visible)::after {
     body.home .language-switcher__link::after,
     body.home .hero-section__actions .button::after {display:none;}
 }
+/* Studio v0.4 atmospheric composition. Keep the object secondary to type. */
+body.home .hero-section--studio {
+    background: radial-gradient(ellipse at 77% 57%, rgba(29,49,99,.13), transparent 56%), #070a13;
+}
+body.home .hero-section--studio::before {
+    background: linear-gradient(90deg, rgba(7,10,19,.97) 0%, rgba(7,10,19,.9) 22%, rgba(7,10,19,.54) 41%, rgba(7,10,19,.13) 72%, transparent 100%);
+}
+body.home .hero-section--studio::after {
+    content: "";
+    position: absolute;
+    z-index: 0;
+    left: 39%;
+    right: -15%;
+    bottom: -13%;
+    height: 38%;
+    border-radius: 50%;
+    pointer-events: none;
+    background:
+        radial-gradient(ellipse 34% 22% at 39% 46%, rgba(58,151,218,.20), transparent 100%),
+        radial-gradient(ellipse 32% 25% at 75% 53%, rgba(94,73,179,.18), transparent 100%);
+    filter: blur(29px);
+    transform: perspective(650px) rotateX(62deg) scaleY(.75);
+    opacity: .56;
+}
+body.home .studio-hero__art {
+    inset: -15% -11% -14% 26%;
+    opacity: .73;
+    -webkit-mask-image: radial-gradient(ellipse 77% 72% at 60% 50%, #000 30%, rgba(0,0,0,.8) 58%, transparent 100%);
+    mask-image: radial-gradient(ellipse 77% 72% at 60% 50%, #000 30%, rgba(0,0,0,.8) 58%, transparent 100%);
+}
+body.home .studio-hero__static-object {
+    background: radial-gradient(ellipse at 46% 50%, transparent 36%, rgba(58,108,215,.26) 45%, rgba(109,87,192,.19) 55%, transparent 70%);
+    opacity: .46;
+}
+@media (max-width: 980px) {
+    body.home .studio-hero__art {inset:-13% -18% 13% 8%;opacity:.52;}
+}
+@media (max-width: 640px) {
+    body.home .studio-hero__art {inset:-9% -28% 26% -4%;opacity:.39;}
+    body.home .hero-section--studio::after {left:5%;right:-30%;bottom:20%;height:24%;opacity:.22;}
+}
+@media (prefers-reduced-motion: reduce) {
+    body.home .studio-hero__art {opacity:.32;}
+    body.home .hero-section--studio::after {opacity:.22;}
+}
