@@ -75,6 +75,25 @@ final class Assets {
             [ 'mrsobolle-studio-fonts' ],
             (string) filemtime( get_template_directory() . $studio_style )
         );
+        $one_screen_style = '/assets/css/studio-one-screen.css';
+        if ( file_exists( get_template_directory() . $one_screen_style ) ) {
+            wp_enqueue_style(
+                'mrsobolle-studio-one-screen',
+                get_template_directory_uri() . $one_screen_style,
+                [ 'mrsobolle-studio-cinematic' ],
+                (string) filemtime( get_template_directory() . $one_screen_style )
+            );
+        }
+        $room_script = '/assets/js/studio-room.js';
+        if ( file_exists( get_template_directory() . $room_script ) ) {
+            wp_enqueue_script(
+                'mrsobolle-studio-room',
+                get_template_directory_uri() . $room_script,
+                [],
+                (string) filemtime( get_template_directory() . $room_script ),
+                true
+            );
+        }
         $gsap = '/assets/vendor/gsap.min.js';
         $hero = '/assets/js/studio-hero.js';
         if ( ! file_exists( get_template_directory() . $gsap ) || ! file_exists( get_template_directory() . $hero ) ) {
