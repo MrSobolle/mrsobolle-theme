@@ -1,5 +1,5 @@
 /* Sobolle Studio: one-screen glass entrance, only on Home. */
-body.home { --studio-glass-ink:#070b17; background:var(--studio-glass-ink); }
+body.home { --studio-glass-ink:#070b17; --studio-gutter:clamp(1rem,5vw,6.25rem); background:var(--studio-glass-ink); }
 body.home .site {
     height:100vh; height:100dvh; min-height:0;
     display:grid; grid-template-rows:auto minmax(0,1fr); overflow:hidden;
@@ -27,7 +27,7 @@ body.home .site-header::before {
 body.home .site-header:is(:hover,:focus-within)::before {opacity:1;}
 body.home .site-header__inner {
     position:relative;z-index:1;width:100%;max-width:none;min-height:clamp(72px,8.5vh,92px);
-    margin:0;padding:.7rem clamp(1.25rem,4.4vw,5.3rem);
+    margin:0;padding:.7rem var(--studio-gutter);
     display:grid;grid-template-columns:minmax(150px,1fr) auto minmax(290px,1fr);
     gap:clamp(.65rem,2.2vw,2.8rem);align-items:center;
 }
@@ -60,10 +60,16 @@ body.home .hero-section--studio::after {content:none;}
 body.home .hero-section--studio .hero-section__inner {
     position:relative;z-index:3;display:flex;align-items:center;
     width:100%;max-width:none;min-height:0;height:100%;margin:0;
-    padding:clamp(1.5rem,3vw,3rem) clamp(1.35rem,7vw,8rem);
+    padding:clamp(1.5rem,3vw,3rem) var(--studio-gutter);
 }
 body.home .hero-section--studio .hero-section__content {
     max-width:min(640px,47vw);min-width:0;pointer-events:auto;
+}
+/* Lift only the desktop Hero, preserving mobile and short-screen access. */
+@media (min-width:901px) and (min-height:631px) {
+    body.home .hero-section--studio .hero-section__content {
+        transform:translateY(clamp(-42px,-3.5vh,-20px));
+    }
 }
 body.home .hero-section--studio .hero-section__title {
     margin:0;max-width:none;overflow:visible;
@@ -118,9 +124,10 @@ body.home .studio-directions__grid {
     display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0;
 }
 body.home .studio-tile {
-    position:relative;display:flex;min-width:0;height:100%;align-items:center;
-    justify-content:space-between;gap:clamp(.9rem,2.5vw,2.4rem);
-    padding:clamp(1.1rem,3vw,2.7rem) clamp(1.35rem,5.5vw,6.4rem);
+    position:relative;display:flex;min-width:0;height:100%;box-sizing:border-box;
+    align-items:flex-start;justify-content:space-between;
+    gap:clamp(.9rem,2.5vw,2.4rem);
+    padding:clamp(1.1rem,2vw,2rem) var(--studio-gutter) clamp(.45rem,.65vw,.85rem);
     color:#e7eefb;background:transparent;text-decoration:none;
     transition:background-color .5s ease,color .4s ease;
 }
@@ -134,7 +141,7 @@ body.home .studio-tile__body {
 }
 body.home .studio-tile__label {
     display:block;margin:0;font-family:"Manrope",sans-serif;
-    font-size:clamp(1.65rem,2.65vw,3.1rem);
+    font-size:clamp(1.6rem,2.3vw,2.7rem);
     font-weight:450;line-height:1.23;letter-spacing:-.05em;
     text-wrap:balance;overflow-wrap:break-word;
 }
@@ -143,7 +150,7 @@ body.home .studio-tile__description {
     font-size:clamp(.81rem,.95vw,1rem);font-weight:415;line-height:1.5;
 }
 body.home .studio-tile__arrow {
-    flex:none;font-size:clamp(1.25rem,2.2vw,2rem);line-height:1;
+    flex:none;align-self:center;font-size:clamp(1.25rem,2.2vw,2rem);line-height:1;
     font-weight:350;opacity:.72;transition:opacity .35s ease,transform .4s ease;
 }
 body.home .studio-tile:is(:hover,:focus-visible) .studio-tile__arrow {
@@ -156,7 +163,7 @@ body.home .studio-tile:is(:hover,:focus-visible) .studio-tile__arrow {
         padding-block:.5rem;
     }
     body.home .language-switcher {grid-column:1 / -1;justify-self:center;}
-    body.home .studio-tile {padding-inline:clamp(1.2rem,4vw,3rem);}
+    body.home .studio-tile {padding-inline:var(--studio-gutter);}
 }
 @media (max-width:900px), (max-height:630px) {
     body.home .site {
@@ -204,7 +211,7 @@ body.home .studio-tile:is(:hover,:focus-visible) .studio-tile__arrow {
     body.home .studio-hero__studio {font-size:clamp(2.3rem,9vw,3.2rem);}
     body.home .hero-section--studio .hero-section__lead {font-size:1rem;}
     body.home .studio-directions__grid {grid-template-columns:minmax(0,1fr);}
-    body.home .studio-tile {min-height:125px;padding:1.15rem 1.2rem;}
+    body.home .studio-tile {min-height:125px;padding:1.15rem 1rem;align-items:center;}
     body.home .studio-tile + .studio-tile {
         border-left:0;border-top:1px solid rgba(142,167,229,.15);
     }
