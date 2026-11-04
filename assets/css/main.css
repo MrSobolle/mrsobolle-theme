@@ -759,12 +759,3 @@ body.home .hero-section--studio::before {
 .changelog-entry h2 {margin:0;font-size:1.4rem;}
 .changelog-entry time {color:#afbdd1;font-size:.84rem;}
 @media (prefers-reduced-motion:reduce) {.journal-topics__link {transition:none;}}
-
-/* Mobile non-home header density: five translated links without a tall gap. */
-@media (max-width:620px) {
- body:not(.home) .site-header__inner {gap:.45rem;padding-block:.65rem;}
- body:not(.home) .main-navigation__list {gap:.15rem .8rem;}
- body:not(.home) .main-navigation a {font-size:.85rem;padding:.2rem .12rem;}
- body:not(.home) .language-switcher__list {gap:.15rem;}
- body:not(.home) .language-switcher__link {min-height:31px;padding:.2rem .44rem;font-size:.77rem;}
-}

@@ -39,6 +39,7 @@ jobs:
           php tests/php/catalog.test.php
           php tests/php/language-switcher.test.php
           php tests/php/translations.test.php
+          php tests/php/global-header.test.php
 
   browser-smoke:
     name: Browser smoke (public site)
