@@ -43,64 +43,20 @@ body.home .language-switcher__list {
 body.home .language-switcher__link {padding:.25rem .35rem;font-size:clamp(.7rem,.81vw,.87rem);}
 body.home .main-navigation a:focus-visible,
 body.home .language-switcher__link:focus-visible {outline:2px solid #9bbfff;outline-offset:4px;}
-/* A distant, almost unlit room with an exceptionally small far wall. */
+/* Calm, solid navy stage. Former room/terminal/3D effects are not rendered. */
 body.home .studio-one-screen {
     position:relative;min-height:0;width:100%;display:grid;
     grid-template-rows:minmax(0,1fr) clamp(152px,21vh,210px);
     overflow:hidden;isolation:isolate;
-    background:radial-gradient(ellipse 41% 36% at 67% 48%,rgba(35,46,99,.12),transparent 90%),
-        linear-gradient(135deg,#070b16 0%,#070a14 58%,#090b17 100%);
-}
-body.home .studio-room {
-    position:absolute;z-index:0;inset:-4.5%;pointer-events:none;opacity:.72;
-    transform:translate3d(var(--room-x,0px),0,0) scale(1.06);
-    transform-origin:center;will-change:transform;
-}
-body.home .studio-room__geometry {position:absolute;inset:0;display:block;width:100%;height:100%;}
-/* All four reflections are initially OFF. Their opacity and motion come
-   only from the live Three.js ribbon; no stale glow if WebGL is unavailable. */
-body.home .studio-room__reflection {pointer-events:none;}
-/* Trapezoid bound to the right room wall, not a floating UI window.
-   Low-contrast slate/cyan text and no luminous green terminal palette. */
-body.home .studio-room__terminal {pointer-events:none;opacity:.64;}
-body.home .studio-room__terminal-panel {
-    fill:#18243d;fill-opacity:.20;
-}
-body.home .studio-room__terminal-edge {
-    stroke:#8098c7;stroke-width:1;stroke-opacity:.25;
-}
-body.home .studio-room__terminal-content {
-    fill:#a5b9d7;stroke:none;
-    font-family:Consolas,"Liberation Mono",monospace;
-    font-size:12px;letter-spacing:.06px;
-}
-body.home .studio-room__terminal-heading {
-    font-size:11px;letter-spacing:1px;fill-opacity:.66;
-}
-body.home .studio-room__terminal-rule {
-    fill:none;stroke:#7f98c5;stroke-width:.85;stroke-opacity:.31;
-}
-body.home .studio-room__terminal-lines {fill-opacity:.62;}
-body.home .studio-room__terminal-lines text {
-    dominant-baseline:alphabetic;
-}
-body.home .studio-room__atmosphere {
-    position:absolute;inset:6% 12% 17%;
-    background:radial-gradient(ellipse 38% 30% at 38% 68%,rgba(31,66,136,.095),transparent 100%),
-        radial-gradient(ellipse 42% 35% at 80% 55%,rgba(68,41,128,.085),transparent 100%);
-    filter:blur(43px);
+    background:#070b16;
 }
 /* Centered foreground mark, free of the previous wordmark right-edge clip. */
 body.home .hero-section--studio {
     position:relative;z-index:1;height:100%;min-height:0;display:flex;
     align-items:center;padding:0;overflow:hidden;isolation:isolate;background:transparent;
 }
-body.home .hero-section--studio::before {
-    z-index:1;
-    background:linear-gradient(90deg,rgba(6,10,21,.72) 0%,rgba(6,10,21,.48) 25%,
-        rgba(6,10,21,.12) 53%,transparent 82%);
-}
-body.home .hero-section--studio::after {bottom:-22%;opacity:.13;}
+body.home .hero-section--studio::before,
+body.home .hero-section--studio::after {content:none;}
 body.home .hero-section--studio .hero-section__inner {
     position:relative;z-index:3;display:flex;align-items:center;
     width:100%;max-width:none;min-height:0;height:100%;margin:0;
@@ -127,12 +83,7 @@ body.home .hero-section--studio .hero-section__lead {
     max-width:410px;margin-top:clamp(1.2rem,3.2vh,2.8rem);
     font-size:clamp(.98rem,1.35vw,1.26rem);
 }
-body.home .studio-hero__art {
-    z-index:0;inset:-10% -4% -11% -4%;opacity:.43;
-    -webkit-mask-image:radial-gradient(ellipse 74% 72% at 62% 51%,#000 20%,rgba(0,0,0,.8) 56%,transparent 100%);
-    mask-image:radial-gradient(ellipse 74% 72% at 62% 51%,#000 20%,rgba(0,0,0,.8) 56%,transparent 100%);
-}
-body.home .studio-hero__static-object {opacity:.23;}
+
 /* One continuous bottom panel, flush with BOTH sides and the viewport bottom. */
 body.home .studio-directions {
     position:relative;z-index:4;isolation:isolate;
@@ -220,7 +171,6 @@ body.home .studio-tile:is(:hover,:focus-visible) .studio-tile__arrow {
     body.home .studio-tile {height:auto;}
     body.home .studio-tile {min-height:155px;}
     body.home .hero-section--studio .hero-section__content {max-width:580px;}
-    body.home .studio-hero__art {inset:-10% -12% -15% -12%;opacity:.3;}
 }
 @media (max-width:620px) {
     body.home .site-header__inner {
@@ -244,12 +194,7 @@ body.home .studio-tile:is(:hover,:focus-visible) .studio-tile__arrow {
         padding:2.5rem 1rem;align-items:flex-end;
     }
     body.home .hero-section--studio .hero-section__content {max-width:100%;}
-    body.home .hero-section--studio::before {
-        background:linear-gradient(180deg,transparent 5%,rgba(7,11,23,.33) 28%,rgba(7,11,23,.9) 84%);
-    }
-    body.home .studio-hero__art {inset:-7% -30% 10% -13%;opacity:.32;}
-    /* At narrow widths, keep the wall calm and the main navigation readable. */
-    body.home .studio-room__terminal {display:none;}
+
     body.home .studio-hero__wordmark {
         font-size:clamp(2.35rem,10vw,3.5rem);line-height:1.2;
         padding:.08em .2em .13em .025em;
@@ -267,7 +212,6 @@ body.home .studio-tile:is(:hover,:focus-visible) .studio-tile__arrow {
     body.home .studio-tile__description {font-size:.8rem;}
 }
 @media (prefers-reduced-motion:reduce) {
-    body.home .studio-room {transform:none!important;will-change:auto;}
     body.home .studio-tile,
     body.home .studio-tile__arrow,
     body.home .site-header,
@@ -278,7 +222,6 @@ body.home .studio-tile:is(:hover,:focus-visible) .studio-tile__arrow {
     }
 }
 @media (forced-colors:active) {
-    body.home .studio-room {display:none;}
     body.home .site-header,
     body.home .studio-directions {border-color:CanvasText;}
     body.home .studio-directions::before,

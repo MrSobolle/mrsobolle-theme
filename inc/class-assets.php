@@ -84,23 +84,19 @@ final class Assets {
                 (string) filemtime( get_template_directory() . $one_screen_style )
             );
         }
-        $room_script = '/assets/js/studio-room.js';
-        if ( file_exists( get_template_directory() . $room_script ) ) {
+        // Keep only the glass interactions in the clean Home experiment.
+        // The retired studio-room, Three.js and GSAP scripts stay in Git
+        // history/source for a reversible future artistic decision.
+        $glass_script = '/assets/js/studio-glass.js';
+        if ( file_exists( get_template_directory() . $glass_script ) ) {
             wp_enqueue_script(
-                'mrsobolle-studio-room',
-                get_template_directory_uri() . $room_script,
+                'mrsobolle-studio-glass',
+                get_template_directory_uri() . $glass_script,
                 [],
-                (string) filemtime( get_template_directory() . $room_script ),
+                (string) filemtime( get_template_directory() . $glass_script ),
                 true
             );
         }
-        $gsap = '/assets/vendor/gsap.min.js';
-        $hero = '/assets/js/studio-hero.js';
-        if ( ! file_exists( get_template_directory() . $gsap ) || ! file_exists( get_template_directory() . $hero ) ) {
-            return;
-        }
-        wp_enqueue_script( 'mrsobolle-gsap', get_template_directory_uri() . $gsap, [], '3.15.0', true );
-        wp_enqueue_script( 'mrsobolle-studio-hero', get_template_directory_uri() . $hero, [ 'mrsobolle-gsap' ], (string) filemtime( get_template_directory() . $hero ), true );
     }
 
     private function enqueue_main_scripts(): void {

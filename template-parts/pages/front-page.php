@@ -17,7 +17,7 @@ $directions_data = isset( $data['directions'] ) && is_array( $data['directions']
 ?>
 <main id="primary" class="site-main front-page studio-one-screen" data-studio-screen>
     <?php
-    View::render( 'front/room' );
+    // The experimental perspective room is deliberately disabled in the clean Home concept.
     View::render( 'front/hero', $hero_data );
     View::render( 'front/directions', $directions_data );
     ?>
