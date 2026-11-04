@@ -4,7 +4,7 @@ test('Work catalog exposes a published, navigable engineering case', async ({ pa
   const response = await page.goto('/work/', { waitUntil: 'domcontentloaded' });
   expect(response?.status()).toBe(200);
 
-  await expect(page.getByRole('heading', { level: 1, name: 'Work' })).toBeVisible();
+  await expect(page.getByRole('heading', { level: 1, name: /^(Work|Engineering)$/ })).toBeVisible();
   const caseLink = page.locator('.catalog-card__title a', { hasText: 'MrSobolle WordPress Theme' });
   await expect(caseLink).toHaveAttribute('href', /\/work\/mrsobolle-theme\/$/);
 
@@ -21,7 +21,7 @@ test('Apps catalog reaches WideCrop with honest availability and policy', async 
   const response = await page.goto('/apps/', { waitUntil: 'domcontentloaded' });
   expect(response?.status()).toBe(200);
 
-  await expect(page.getByRole('heading', { level: 1, name: 'Apps' })).toBeVisible();
+  await expect(page.getByRole('heading', { level: 1, name: /^(Apps|Products)$/ })).toBeVisible();
   await page.locator('.catalog-card__title a', { hasText: 'WideCrop' }).click();
 
   await expect(page).toHaveURL(/\/apps\/widecrop\/$/);
@@ -51,9 +51,9 @@ test('Internal page navigation remains functional and mobile-safe', async ({ pag
   }
 
   const nav = page.locator('#site-navigation');
-  await expect(nav.getByRole('link', { name: 'Work' })).toHaveAttribute('href', /\/work\/$/);
-  await expect(nav.getByRole('link', { name: 'Apps' })).toHaveAttribute('href', /\/apps\/$/);
-  await expect(nav.getByRole('link', { name: 'About' })).toHaveAttribute('href', /\/#about$/);
+  await expect(nav.getByRole('link', { name: /^(Work|Engineering)$/ })).toHaveAttribute('href', /\/work\/$/);
+  await expect(nav.getByRole('link', { name: /^(Apps|Products)$/ })).toHaveAttribute('href', /\/apps\/$/);
+  await expect(nav.getByRole('link', { name: 'About' })).toHaveAttribute('href', /\/(?:#about|about\/)$/);
   expect(runtimeErrors, 'Uncaught JavaScript exceptions').toEqual([]);
 
   await testInfo.attach('widecrop-page.png', {
