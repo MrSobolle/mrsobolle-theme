@@ -167,6 +167,11 @@
             contourGeometries.push(lineGeometry);
             contourMaterials.push(lineMaterial);
         }
+        // Physical perspective: place the sculpture farther from the camera
+        // rather than shrinking its CSS canvas. At camera Z=11.3, moving the
+        // group to Z=-2.2 makes its apparent size roughly 16% smaller.
+        // A small downward shift aligns it with the room's far-wall center.
+        sculpture.position.z = -2.2;
         scene.add(sculpture);
         scene.add(new THREE.AmbientLight(0xa0bbff, .53));
         const blue = new THREE.PointLight(0x68caff, 29);
@@ -182,7 +187,8 @@
         const floorGlow = room?.querySelector('[data-studio-reflection="floor"]');
         const leftGlow = room?.querySelector('[data-studio-reflection="left"]');
         const rightGlow = room?.querySelector('[data-studio-reflection="right"]');
-        const glows = [floorGlow, leftGlow, rightGlow].filter(Boolean);
+        const backGlow = room?.querySelector('[data-studio-reflection="back"]');
+        const glows = [floorGlow, leftGlow, rightGlow, backGlow].filter(Boolean);
         let lastReflectionFrame = 0;
         const projectReflections = (now) => {
             if (!glows.length || now - lastReflectionFrame < 48) return;
@@ -193,24 +199,34 @@
             const drift = Math.sin(turn * 1.65);
             const sweep = Math.cos(turn * 2.05 + tilt * .8);
 
+            if (backGlow) {
+                const wallDrift = Math.cos(turn * 1.4 + tilt * .7);
+                const wallPulse = Math.sin(turn * 1.9 - tilt * .9);
+                backGlow.setAttribute('transform',
+                    'translate(' + (wallDrift * 24).toFixed(1) + ' ' +
+                    (wallPulse * 11).toFixed(1) + ') rotate(' +
+                    (wallPulse * 3).toFixed(1) + ' 800 420)');
+                backGlow.setAttribute('opacity', (.33 + .07 * wallPulse).toFixed(3));
+            }
+
             if (floorGlow) {
                 floorGlow.setAttribute('transform',
                     'translate(' + (drift * 74).toFixed(1) + ' ' +
                     (sweep * 13).toFixed(1) + ') rotate(' +
                     (sweep * 6).toFixed(1) + ' 800 647)');
-                floorGlow.setAttribute('opacity', (.40 + .065 * sweep).toFixed(3));
+                floorGlow.setAttribute('opacity', (.35 + .055 * sweep).toFixed(3));
             }
             if (leftGlow) {
                 leftGlow.setAttribute('transform',
                     'translate(' + (sweep * 35).toFixed(1) + ' ' +
                     (drift * 20).toFixed(1) + ')');
-                leftGlow.setAttribute('opacity', (.27 + .065 * drift).toFixed(3));
+                leftGlow.setAttribute('opacity', (.23 + .055 * drift).toFixed(3));
             }
             if (rightGlow) {
                 rightGlow.setAttribute('transform',
                     'translate(' + (-drift * 40).toFixed(1) + ' ' +
                     (sweep * 19).toFixed(1) + ')');
-                rightGlow.setAttribute('opacity', (.31 - .075 * drift).toFixed(3));
+                rightGlow.setAttribute('opacity', (.26 - .065 * drift).toFixed(3));
             }
         };
         const clearReflections = () => {
@@ -272,7 +288,7 @@
                 sculpture.rotation.x += (x - sculpture.rotation.x) * .055;
                 sculpture.rotation.y += (y - sculpture.rotation.y) * .055;
                 sculpture.rotation.z += (z - sculpture.rotation.z) * .055;
-                sculpture.position.y = .06 + Math.sin(t * .23) * .12;
+                sculpture.position.y = -.35 + Math.sin(t * .23) * .11;
                 projectReflections(now);
                 renderer.render(scene, camera);
             }

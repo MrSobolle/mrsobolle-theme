@@ -36,6 +36,19 @@ defined( 'ABSPATH' ) || exit;
             <clipPath id="studio-room-floor-clip">
                 <path d="M0 900L690 530H910L1600 900Z"/>
             </clipPath>
+            <clipPath id="studio-room-back-wall-clip">
+                <rect x="690" y="310" width="220" height="220"/>
+            </clipPath>
+            <radialGradient id="studio-room-back-wall-blue">
+                <stop offset="0" stop-color="#a1d9ff" stop-opacity=".48"/>
+                <stop offset=".44" stop-color="#688dd3" stop-opacity=".19"/>
+                <stop offset="1" stop-color="#2a4d85" stop-opacity="0"/>
+            </radialGradient>
+            <radialGradient id="studio-room-back-wall-violet">
+                <stop offset="0" stop-color="#bfabf5" stop-opacity=".36"/>
+                <stop offset=".43" stop-color="#8473cd" stop-opacity=".15"/>
+                <stop offset="1" stop-color="#3f397e" stop-opacity="0"/>
+            </radialGradient>
             <radialGradient id="studio-room-reflection-blue">
                 <stop offset="0" stop-color="#9dd5ff" stop-opacity=".44"/>
                 <stop offset=".38" stop-color="#578aca" stop-opacity=".23"/>
@@ -52,8 +65,14 @@ defined( 'ABSPATH' ) || exit;
         <path d="M0 900L690 530H910L1600 900Z" fill="url(#studio-floor)"/>
         <rect x="690" y="310" width="220" height="220" fill="#0c1325" fill-opacity=".24"/>
         <ellipse cx="800" cy="530" rx="430" ry="250" fill="url(#studio-vanishing-light)"/>
-        <!-- A subtle illuminated room, not a second mirrored 3D renderer.
-             JS ties the three colored projections to actual ribbon rotation. -->
+        <!-- The far wall receives a tiny, shifting pool of reflected light. -->
+        <g class="studio-room__reflection" data-studio-reflection="back"
+           clip-path="url(#studio-room-back-wall-clip)" opacity="0">
+            <ellipse cx="788" cy="421" rx="156" ry="148" fill="url(#studio-room-back-wall-blue)"/>
+            <ellipse cx="834" cy="439" rx="137" ry="124" fill="url(#studio-room-back-wall-violet)"/>
+        </g>
+        <!-- All four diffuse light projections follow the actual ribbon rotation;
+             no second renderer or physically accurate ray-tracing is required. -->
         <g class="studio-room__reflection" data-studio-reflection="floor" clip-path="url(#studio-room-floor-clip)" opacity="0">
             <ellipse cx="780" cy="647" rx="355" ry="135" transform="rotate(-8 780 647)" fill="url(#studio-room-reflection-blue)"/>
             <ellipse cx="910" cy="653" rx="260" ry="111" transform="rotate(8 910 653)" fill="url(#studio-room-reflection-violet)"/>
