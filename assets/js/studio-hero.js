@@ -169,9 +169,9 @@
         }
         // Physical perspective: place the sculpture farther from the camera
         // rather than shrinking its CSS canvas. At camera Z=11.3, moving the
-        // group to Z=-2.2 makes its apparent size roughly 16% smaller.
+        // group to Z=-4.9 places it ~17% farther in perspective than v0.7.
         // A small downward shift aligns it with the room's far-wall center.
-        sculpture.position.z = -2.2;
+        sculpture.position.z = -4.9;
         scene.add(sculpture);
         scene.add(new THREE.AmbientLight(0xa0bbff, .53));
         const blue = new THREE.PointLight(0x68caff, 29);
@@ -236,7 +236,8 @@
             });
         };
 
-        const target = {x: 0, y: 0};
+        // Horizontal pointer input only. Vertical position remains fixed.
+        const target = {y: 0};
         let visible = true;
         const started = performance.now();
         let disposed = false;
@@ -250,9 +251,9 @@
             if (!fine.matches) return;
             const rect = hero.getBoundingClientRect();
             target.y = ((event.clientX - rect.left) / rect.width - .5) * .56;
-            target.x = ((event.clientY - rect.top) / rect.height - .5) * .39;
+            // Intentionally ignore pointer Y for a stable, depth-anchored figure.
         };
-        const leave = () => {target.x = 0; target.y = 0;};
+        const leave = () => {target.y = 0;};
         hero.addEventListener('pointermove', move, {passive: true});
         hero.addEventListener('pointerleave', leave);
         const intersection = new IntersectionObserver(entries => {visible = entries[0].isIntersecting;});
@@ -282,13 +283,13 @@
             if (!art.isConnected || reduced.matches) {dispose(); return;}
             if (visible && !document.hidden) {
                 const t = (now - started) * .001;
-                const x = -.21 + Math.sin(t * .48) * .19 + target.x;
+                const x = -.21 + Math.sin(t * .48) * .19;
                 const y = -.25 + t * .075 + Math.cos(t * .34) * .2 + target.y;
                 const z = -.33 + Math.sin(t * .3) * .095;
                 sculpture.rotation.x += (x - sculpture.rotation.x) * .055;
                 sculpture.rotation.y += (y - sculpture.rotation.y) * .055;
                 sculpture.rotation.z += (z - sculpture.rotation.z) * .055;
-                sculpture.position.y = -.35 + Math.sin(t * .23) * .11;
+                sculpture.position.y = -.35;
                 projectReflections(now);
                 renderer.render(scene, camera);
             }

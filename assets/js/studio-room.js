@@ -11,8 +11,8 @@
 
     const finePointer = window.matchMedia('(pointer: fine)');
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-    const target = {x: 0, y: 0};
-    const current = {x: 0, y: 0};
+    const target = {x: 0};
+    const current = {x: 0};
     let scheduled = false;
 
     const animate = () => {
@@ -20,12 +20,9 @@
         if (!room.isConnected || reducedMotion.matches || document.hidden) return;
 
         current.x += (target.x - current.x) * .085;
-        current.y += (target.y - current.y) * .085;
         room.style.setProperty('--room-x', current.x.toFixed(2) + 'px');
-        room.style.setProperty('--room-y', current.y.toFixed(2) + 'px');
 
-        if (Math.abs(target.x - current.x) > .08 ||
-            Math.abs(target.y - current.y) > .08) {
+        if (Math.abs(target.x - current.x) > .08) {
             requestFrame();
         }
     };
@@ -39,15 +36,15 @@
 
     const reset = () => {
         target.x = 0;
-        target.y = 0;
+
         requestFrame();
     };
 
     if (finePointer.matches && !reducedMotion.matches) {
-        // The room lags subtly behind the pointer: ~22px X, ~14px Y.
+        // Horizontal room parallax only: about +/-22px X.
         window.addEventListener('pointermove', event => {
             target.x = (event.clientX / window.innerWidth - .5) * 44;
-            target.y = (event.clientY / window.innerHeight - .5) * 28;
+
             requestFrame();
         }, {passive: true});
         document.addEventListener('pointerleave', reset);
@@ -70,11 +67,92 @@
         }, {passive: true});
     });
 
+    // All text below is an intentionally fictional, decorative log stream.
+    // No real requests, server responses, credentials or user data are read.
+    const terminalRows = Array.from(room.querySelectorAll('[data-studio-terminal-line]'));
+    const compactScreen = window.matchMedia('(max-width: 620px)');
+    const demoMessages = [
+        '[core] loading adapters',
+        '[api] request 028 accepted',
+        '[api] response 200 (43ms)',
+        '[tools] extension manifest OK',
+        '[build] tasks completed: 6/6',
+        'PS> inspecting viewport',
+        '[render] ultrawide profile ready',
+        '[sync] received next packet',
+        '[core] queue is stable',
+        'PS> awaiting next request'
+    ];
+    const terminalInitial = terminalRows.map(row => row.textContent);
+    let logHistory = terminalInitial.slice();
+    let logTimer = null;
+    let messageIndex = 0;
+    let cursor = 0;
+    let typing = false;
+
+    const terminalCanAnimate = () =>
+        terminalRows.length === 8 && room.isConnected &&
+        !document.hidden && !reducedMotion.matches && !compactScreen.matches;
+
+    const stopLogTimer = () => {
+        if (logTimer !== null) {
+            window.clearTimeout(logTimer);
+            logTimer = null;
+        }
+    };
+
+    const paintLog = () => {
+        terminalRows.forEach((row, i) => { row.textContent = logHistory[i]; });
+    };
+
+    const logStep = () => {
+        logTimer = null;
+        if (!terminalCanAnimate()) return;
+
+        if (!typing) {
+            logHistory.shift();
+            logHistory.push('');
+            cursor = 0;
+            typing = true;
+            paintLog();
+        }
+        const message = demoMessages[messageIndex % demoMessages.length];
+        if (cursor < message.length) {
+            cursor++;
+            terminalRows[terminalRows.length - 1].textContent =
+                message.slice(0, cursor) + (cursor < message.length ? '_' : '');
+            logTimer = window.setTimeout(logStep, 72);
+        } else {
+            logHistory[logHistory.length - 1] = message;
+            messageIndex++;
+            typing = false;
+            logTimer = window.setTimeout(logStep, 850);
+        }
+    };
+
+    const syncTerminal = () => {
+        stopLogTimer();
+        if (reducedMotion.matches) {
+            logHistory = terminalInitial.slice();
+            typing = false;
+            paintLog();
+        } else if (terminalCanAnimate()) {
+            logTimer = window.setTimeout(logStep, 580);
+        }
+    };
+
+    document.addEventListener('visibilitychange', syncTerminal);
+    compactScreen.addEventListener('change', syncTerminal);
+    window.addEventListener('pagehide', stopLogTimer);
+    syncTerminal();
+
     reducedMotion.addEventListener('change', event => {
         if (event.matches) {
-            target.x = 0; target.y = 0;
+            target.x = 0;
             room.style.removeProperty('--room-x');
-            room.style.removeProperty('--room-y');
+        } else {
+            requestFrame();
         }
+        syncTerminal();
     });
 })();

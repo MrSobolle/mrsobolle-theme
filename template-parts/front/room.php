@@ -83,7 +83,30 @@ defined( 'ABSPATH' ) || exit;
         <g class="studio-room__reflection" data-studio-reflection="right" clip-path="url(#studio-room-right-clip)" opacity="0">
             <ellipse cx="1100" cy="416" rx="220" ry="245" transform="rotate(27 1100 416)" fill="url(#studio-room-reflection-violet)"/>
         </g>
-        <g stroke="#7894d9" stroke-width="1" stroke-opacity=".095" fill="none">
+        <!-- Decorative simulated terminal: flush with the right-hand wall,
+             perspective-shaped, intentionally quiet and never actual server data. -->
+        <g class="studio-room__terminal" data-studio-terminal
+           clip-path="url(#studio-room-right-clip)" aria-hidden="true">
+            <path class="studio-room__terminal-panel"
+                  d="M1060 327L1370 213L1370 624L1060 523Z"/>
+            <path class="studio-room__terminal-edge" fill="none"
+                  d="M1060 327L1370 213L1370 624L1060 523Z"/>
+            <g class="studio-room__terminal-content"
+               transform="matrix(1,-0.31,0,1.08,1090,352)">
+                <text class="studio-room__terminal-heading" x="0" y="0">STUDIO / SESSION PREVIEW</text>
+                <path class="studio-room__terminal-rule" d="M0 12H237"/>
+                <g class="studio-room__terminal-lines" data-studio-terminal-lines>
+                    <text x="0" y="31" data-studio-terminal-line="0">PS&gt; boot studio.runtime</text>
+                    <text x="0" y="48" data-studio-terminal-line="1">[core] pipeline ready</text>
+                    <text x="0" y="65" data-studio-terminal-line="2">[build] bundles synced</text>
+                    <text x="0" y="82" data-studio-terminal-line="3">[ai] tools initialized</text>
+                    <text x="0" y="99" data-studio-terminal-line="4">[web] viewport calibrated</text>
+                    <text x="0" y="116" data-studio-terminal-line="5">[api] response 200 OK</text>
+                    <text x="0" y="133" data-studio-terminal-line="6">[sys] awaiting events</text>
+                    <text x="0" y="150" data-studio-terminal-line="7">PS&gt; listening_</text>
+                </g>
+            </g>
+        </g>        <g stroke="#7894d9" stroke-width="1" stroke-opacity=".095" fill="none">
             <path d="M0 0L690 310H910L1600 0"/>
             <path d="M0 900L690 530H910L1600 900"/>
             <path d="M690 310V530M910 310V530"/>
