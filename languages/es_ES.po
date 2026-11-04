@@ -178,3 +178,54 @@ msgstr "WideCrop permite ajustar el encuadre del vídeo a pantallas ultraanchas.
 
 msgid "Explore WideCrop"
 msgstr "Descubrir WideCrop"
+
+msgid "Version history will appear after the first release."
+msgstr "El historial de versiones aparecerá después del primer lanzamiento."
+
+msgid "Preparing release"
+msgstr "Preparando el lanzamiento"
+
+msgid "Engineering"
+msgstr "Ingeniería de software"
+
+msgid "Journal"
+msgstr "Diario"
+
+msgid "Journal topics"
+msgstr "Temas del diario"
+
+msgid "Released"
+msgstr "Publicado"
+
+msgid "No articles yet."
+msgstr "Todavía no hay artículos."
+
+msgid "Journal pages"
+msgstr "Páginas del diario"
+
+msgid "All topics"
+msgstr "Todos los temas"
+
+msgid "Changelog"
+msgstr "Historial de versiones"
+
+msgid "Software engineering, architecture and selected professional work."
+msgstr "Ingeniería de software, arquitectura y proyectos profesionales seleccionados."
+
+msgid "Useful software built to solve practical problems."
+msgstr "Software útil para resolver problemas prácticos."
+
+msgid "Products"
+msgstr "Productos"
+
+msgid "Read article"
+msgstr "Leer artículo"
+
+msgid "Pre-alpha"
+msgstr "Prealfa"
+
+msgid "In development"
+msgstr "En desarrollo"
+
+msgid "Related articles"
+msgstr "Artículos relacionados"

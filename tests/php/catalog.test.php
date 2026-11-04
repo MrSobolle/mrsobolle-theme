@@ -68,6 +68,7 @@ function has_post_thumbnail( WP_Post $post ): bool { return false; }
 
 require_once dirname( __DIR__, 2 ) . '/inc/data/class-directory-data.php';
 require_once dirname( __DIR__, 2 ) . '/inc/data/class-site-data.php';
+require_once dirname( __DIR__, 2 ) . '/inc/data/class-product-data.php';
 
 use MrSobolle\Data\Directory_Data;
 use MrSobolle\Data\Site_Data;

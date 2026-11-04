@@ -80,10 +80,14 @@ $home_url         = Site_Data::home_url();
                         $apps_url = Directory_Data::directory_url( 'apps' );
                         ?>
                         <?php if ( '' !== $work_url ) : ?>
-                            <li><a href="<?php echo esc_url( $work_url ); ?>"><?php esc_html_e( 'Work', 'mrsobolle' ); ?></a></li>
+                            <li><a href="<?php echo esc_url( $work_url ); ?>"><?php esc_html_e( 'Engineering', 'mrsobolle' ); ?></a></li>
                         <?php endif; ?>
                         <?php if ( '' !== $apps_url ) : ?>
-                            <li><a href="<?php echo esc_url( $apps_url ); ?>"><?php esc_html_e( 'Apps', 'mrsobolle' ); ?></a></li>
+                            <li><a href="<?php echo esc_url( $apps_url ); ?>"><?php esc_html_e( 'Products', 'mrsobolle' ); ?></a></li>
+                        <?php endif; ?>
+                        <?php $journal_url = Site_Data::content_page_url( 'journal' ); ?>
+                        <?php if ( '' !== $journal_url ) : ?>
+                            <li><a href="<?php echo esc_url( $journal_url ); ?>"><?php esc_html_e( 'Journal', 'mrsobolle' ); ?></a></li>
                         <?php endif; ?>
                         <?php $about_url = Site_Data::content_page_url( 'about' ); ?>
                         <?php if ( '' !== $about_url ) : ?>

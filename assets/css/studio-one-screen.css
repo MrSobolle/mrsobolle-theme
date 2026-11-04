@@ -234,3 +234,12 @@ body.home .studio-tile:is(:hover,:focus-visible) .studio-tile__arrow {
     body.home .studio-directions::before,
     body.home .site-header::before {display:none;}
 }
+
+
+/* Five-item navigation: allow translated labels to wrap on narrow screens. */
+@media (max-width:1120px) {
+ body.home .main-navigation__list {flex-wrap:wrap;justify-content:flex-end;}
+}
+@media (max-width:620px) {
+ body.home .main-navigation__list {justify-content:flex-start;}
+}

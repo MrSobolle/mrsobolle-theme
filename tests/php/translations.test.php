@@ -49,7 +49,13 @@ foreach ( $expected as $locale ) {
         'Software Engineer / PHP & WordPress', 'Software engineering from architecture to delivery.', 'Software products, web solutions and engineering.',
         'What I build', 'Independent software for practical problems.', 'AI & Developer Tools',
         'AI integrations, automation and utilities for local developer workflows.', 'Browser Extensions',
-        'WideCrop brings flexible video framing to ultrawide screens.', 'Explore WideCrop' ] as $source ) {
+        'WideCrop brings flexible video framing to ultrawide screens.', 'Explore WideCrop',
+        'Products', 'Engineering', 'Journal', 'Changelog', 'Related articles',
+        'Pre-alpha', 'In development', 'Preparing release', 'Released',
+        'All topics', 'Read article', 'No articles yet.',
+        'Useful software built to solve practical problems.',
+        'Software engineering, architecture and selected professional work.',
+        'Version history will appear after the first release.' ] as $source ) {
         if ( ! isset( $messages[ $source ] ) || $messages[ $source ] === '' ) {
             throw new RuntimeException( "Missing translation: $locale $source" );
         }

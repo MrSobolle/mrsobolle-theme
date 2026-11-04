@@ -52,7 +52,7 @@ final class Site_Data {
      * @return string Localized public URL, or empty when unavailable.
      */
     public static function content_page_url( string $slug ): string {
-        if ( ! in_array( $slug, [ 'about', 'contact' ], true ) ) {
+        if ( ! in_array( $slug, [ 'about', 'contact', 'journal' ], true ) ) {
             return '';
         }
 

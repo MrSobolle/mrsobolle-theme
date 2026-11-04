@@ -178,3 +178,54 @@ msgstr "WideCrop помогает гибко подстраивать видео
 
 msgid "Explore WideCrop"
 msgstr "Посмотреть WideCrop"
+
+msgid "Version history will appear after the first release."
+msgstr "История версий появится после первого выпуска."
+
+msgid "Preparing release"
+msgstr "Подготовка к выпуску"
+
+msgid "Engineering"
+msgstr "Инженерия"
+
+msgid "Journal"
+msgstr "Журнал"
+
+msgid "Journal topics"
+msgstr "Темы журнала"
+
+msgid "Released"
+msgstr "Выпущен"
+
+msgid "No articles yet."
+msgstr "Публикаций пока нет."
+
+msgid "Journal pages"
+msgstr "Страницы журнала"
+
+msgid "All topics"
+msgstr "Все темы"
+
+msgid "Changelog"
+msgstr "История версий"
+
+msgid "Software engineering, architecture and selected professional work."
+msgstr "Разработка программ, архитектура систем и избранные профессиональные проекты."
+
+msgid "Useful software built to solve practical problems."
+msgstr "Полезные программы для решения практических задач."
+
+msgid "Products"
+msgstr "Продукты"
+
+msgid "Read article"
+msgstr "Читать статью"
+
+msgid "Pre-alpha"
+msgstr "Пре-альфа"
+
+msgid "In development"
+msgstr "В разработке"
+
+msgid "Related articles"
+msgstr "Связанные публикации"
