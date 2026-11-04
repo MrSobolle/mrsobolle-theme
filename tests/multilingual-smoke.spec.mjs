@@ -6,35 +6,35 @@ const locales = [
     home: '/',
     product: '/apps/widecrop/',
     privacy: '/apps/widecrop/privacy/',
-    claim: 'Software engineering from architecture to delivery.'
+    tiles: ['Products', 'Engineering']
   },
   {
     code: 'ru',
     home: '/ru/',
     product: '/ru/prilozheniya/widecrop/',
     privacy: '/ru/prilozheniya/widecrop/konfidentsialnost/',
-    claim: 'Разработка программ: от архитектуры до выпуска.'
+    tiles: ['Продукты', 'Инженерия']
   },
   {
     code: 'de',
     home: '/de/',
     product: '/de/anwendungen/widecrop/',
     privacy: '/de/anwendungen/widecrop/datenschutz/',
-    claim: 'Softwareentwicklung von der Architektur bis zur Bereitstellung.'
+    tiles: ['Produkte', 'Softwareentwicklung']
   },
   {
     code: 'fr',
     home: '/fr/',
     product: '/fr/applications/widecrop/',
     privacy: '/fr/applications/widecrop/confidentialite/',
-    claim: 'Ingénierie logicielle, de l’architecture à la mise en production.'
+    tiles: ['Produits', 'Ingénierie logicielle']
   },
   {
     code: 'es',
     home: '/es/',
     product: '/es/aplicaciones/widecrop/',
     privacy: '/es/aplicaciones/widecrop/privacidad/',
-    claim: 'Ingeniería de software desde la arquitectura hasta el lanzamiento.'
+    tiles: ['Productos', 'Ingeniería de software']
   }
 ];
 
@@ -47,7 +47,7 @@ test('All five localized homepages render translated UI and language navigation'
     const response = await page.goto(item.home, { waitUntil: 'domcontentloaded' });
     expect(response?.status(), item.code).toBe(200);
     await expect(page.locator('html')).toHaveAttribute('lang', new RegExp('^' + item.code));
-    await expect(page.getByText(item.claim, { exact: true })).toBeVisible();
+    await expect(page.locator('.studio-tile__label')).toHaveText(item.tiles);
 
     const nav = page.locator('nav.language-switcher');
     await expect(nav.locator('.language-switcher__item')).toHaveCount(5);
