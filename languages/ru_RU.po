@@ -154,3 +154,78 @@ msgstr "Работы"
 
 msgid "© %1$s %2$s. All rights reserved."
 msgstr "© %1$s %2$s. Все права защищены."
+
+msgid "Software products, web solutions and engineering."
+msgstr "Программные продукты, веб-решения и инженерная разработка."
+
+msgid "What I build"
+msgstr "Что я создаю"
+
+msgid "Independent software for practical problems."
+msgstr "Независимые программы для практических задач."
+
+msgid "AI & Developer Tools"
+msgstr "ИИ и инструменты разработчика"
+
+msgid "AI integrations, automation and utilities for local developer workflows."
+msgstr "Интеграции с ИИ, автоматизация и утилиты для локальных процессов разработки."
+
+msgid "Browser Extensions"
+msgstr "Расширения браузера"
+
+msgid "WideCrop brings flexible video framing to ultrawide screens."
+msgstr "WideCrop помогает гибко подстраивать видеокадр под ультраширокие экраны."
+
+msgid "Explore WideCrop"
+msgstr "Посмотреть WideCrop"
+
+msgid "Version history will appear after the first release."
+msgstr "История версий появится после первого выпуска."
+
+msgid "Preparing release"
+msgstr "Подготовка к выпуску"
+
+msgid "Engineering"
+msgstr "Инженерия"
+
+msgid "Journal"
+msgstr "Журнал"
+
+msgid "Journal topics"
+msgstr "Темы журнала"
+
+msgid "Released"
+msgstr "Выпущен"
+
+msgid "No articles yet."
+msgstr "Публикаций пока нет."
+
+msgid "Journal pages"
+msgstr "Страницы журнала"
+
+msgid "All topics"
+msgstr "Все темы"
+
+msgid "Changelog"
+msgstr "История версий"
+
+msgid "Software engineering, architecture and selected professional work."
+msgstr "Разработка программ, архитектура систем и избранные профессиональные проекты."
+
+msgid "Useful software built to solve practical problems."
+msgstr "Полезные программы для решения практических задач."
+
+msgid "Products"
+msgstr "Продукты"
+
+msgid "Read article"
+msgstr "Читать статью"
+
+msgid "Pre-alpha"
+msgstr "Пре-альфа"
+
+msgid "In development"
+msgstr "В разработке"
+
+msgid "Related articles"
+msgstr "Связанные публикации"

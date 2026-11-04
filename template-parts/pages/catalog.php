@@ -7,11 +7,12 @@
 
 use MrSobolle\Data\Directory_Data;
 use MrSobolle\Data\Site_Data;
+use MrSobolle\Data\Product_Data;
 
 defined( 'ABSPATH' ) || exit;
 
 $kind   = isset( $args['kind'] ) && 'work' === $args['kind'] ? 'work' : 'apps';
-$label  = 'work' === $kind ? __( 'Selected work', 'mrsobolle' ) : __( 'Software & tools', 'mrsobolle' );
+$label  = 'work' === $kind ? __( 'Selected work', 'mrsobolle' ) : __( 'Products', 'mrsobolle' );
 $empty  = 'work' === $kind
     ? __( 'Case studies will appear here as they become available.', 'mrsobolle' )
     : __( 'Product pages will appear here as they become available.', 'mrsobolle' );
@@ -49,6 +50,9 @@ $empty  = 'work' === $kind
                                     </a>
                                 <?php endif; ?>
                                 <div class="catalog-card__body">
+                                    <?php if ( 'apps' === $kind && '' !== Product_Data::stage_label( Product_Data::stage( (int) $child->ID ) ) ) : ?>
+                                        <span class="product-stage"><?php echo esc_html( Product_Data::stage_label( Product_Data::stage( (int) $child->ID ) ) ); ?></span>
+                                    <?php endif; ?>
                                     <h2 class="catalog-card__title">
                                         <a href="<?php echo esc_url( get_permalink( $child ) ); ?>">
                                             <?php echo esc_html( get_the_title( $child ) ); ?>

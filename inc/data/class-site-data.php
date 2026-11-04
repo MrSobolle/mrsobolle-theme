@@ -44,6 +44,37 @@ final class Site_Data {
     }
 
     /**
+     * Resolve a dedicated About or Contact page in the active Polylang locale.
+     * Do not emit links to nonexistent pages or anchor targets on the
+     * single-screen Home.
+     *
+     * @param string $slug English canonical page slug.
+     * @return string Localized public URL, or empty when unavailable.
+     */
+    public static function content_page_url( string $slug ): string {
+        if ( ! in_array( $slug, [ 'about', 'contact', 'journal' ], true ) ) {
+            return '';
+        }
+
+        $page = get_page_by_path( $slug, OBJECT, 'page' );
+        if ( ! $page instanceof \WP_Post || 'publish' !== $page->post_status ) {
+            return '';
+        }
+
+        $id = (int) $page->ID;
+        if ( function_exists( 'pll_get_post' ) && function_exists( 'pll_current_language' ) ) {
+            $current = pll_current_language( 'slug' );
+            $translated = is_string( $current ) ? pll_get_post( $id, $current ) : false;
+            if ( ! is_int( $translated ) && ! ctype_digit( (string) $translated ) ) {
+                return '';
+            }
+            $id = (int) $translated;
+        }
+
+        return 'publish' === get_post_status( $id ) ? (string) get_permalink( $id ) : '';
+    }
+
+    /**
      * Returns owner profile data.
      *
      * @return array<string, string>

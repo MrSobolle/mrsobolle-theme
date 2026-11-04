@@ -1,0 +1,275 @@
+/*
+ * Sobolle Studio universal glass header.
+ * The Home page and all inner templates share the same navbar appearance
+ * and hover aura. Loaded AFTER Home-only cinematic / one-screen CSS.
+ * Localized five-item nav remains reachable at all viewport widths.
+ */
+body .site-header[data-studio-glass] {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    isolation: isolate;
+    width: 100%;
+    border: 0;
+    border-bottom: 1px solid rgba(143, 161, 225, .18);
+    border-radius: 0;
+    background: rgba(18, 28, 58, .19);
+    -webkit-backdrop-filter: blur(23px) saturate(125%);
+    backdrop-filter: blur(23px) saturate(125%);
+    box-shadow: inset 0 -1px rgba(142, 174, 246, .035),
+                0 8px 40px rgba(3, 6, 19, .12);
+    color: #edf1f8;
+    font-family: "Manrope", "Segoe UI", sans-serif;
+    font-synthesis: none;
+    transition: background-color .5s ease, border-color .5s ease;
+}
+body.home .site-header[data-studio-glass] {
+    position: relative;
+    top: auto;
+}
+body .site-header[data-studio-glass]:is(:hover, :focus-within) {
+    background-color: rgba(27, 39, 77, .255);
+    border-bottom-color: rgba(139, 156, 220, .28);
+}
+body .site-header[data-studio-glass]::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background: radial-gradient(
+        ellipse 34% 165% at var(--glass-x, 55%) var(--glass-y, 52%),
+        rgba(107, 148, 237, .14),
+        rgba(92, 76, 175, .045) 55%,
+        transparent 88%
+    );
+    opacity: 0;
+    transition: opacity .55s ease;
+}
+body .site-header[data-studio-glass]:is(:hover, :focus-within)::before {
+    opacity: 1;
+}
+body .site-header[data-studio-glass] .site-header__inner {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: none;
+    min-height: clamp(72px, 8.5vh, 92px);
+    margin: 0;
+    padding: .7rem clamp(1rem, 5vw, 6.25rem);
+    display: grid;
+    grid-template-columns: minmax(150px, 1fr) auto minmax(290px, 1fr);
+    gap: clamp(.65rem, 2.2vw, 2.8rem);
+    align-items: center;
+}
+body .site-header[data-studio-glass] .site-branding {
+    min-width: 0;
+    width: auto;
+}
+body .site-header[data-studio-glass] .site-branding__title {
+    font-family: "Manrope", "Segoe UI", sans-serif;
+    font-weight: 760;
+    font-size: 1.03rem;
+    letter-spacing: -.035em;
+    white-space: nowrap;
+}
+body .site-header[data-studio-glass] .site-branding__description {
+    display: none;
+}
+body .site-header[data-studio-glass] .main-navigation {
+    justify-self: center;
+}
+body .site-header[data-studio-glass] .main-navigation__list {
+    display: flex;
+    justify-content: center;
+    flex-wrap: nowrap;
+    gap: clamp(.2rem, 1vw, 1.1rem);
+}
+body .site-header[data-studio-glass] .language-switcher {
+    justify-self: end;
+    min-width: 0;
+}
+body .site-header[data-studio-glass] .language-switcher__list {
+    justify-content: flex-end;
+    gap: clamp(0px, .3vw, 5px);
+    flex-wrap: nowrap;
+}
+body .site-header[data-studio-glass] .main-navigation a,
+body .site-header[data-studio-glass] .language-switcher__link {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    isolation: isolate;
+    overflow: visible;
+    background: transparent;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+    color: #c0c9d6;
+    font-family: "Manrope", "Segoe UI", sans-serif;
+    font-weight: 550;
+    text-decoration: none;
+    white-space: nowrap;
+    transform: translate3d(0, 0, 0);
+    transition: color 360ms ease, transform 450ms cubic-bezier(.2, .7, .25, 1);
+}
+body .site-header[data-studio-glass] .main-navigation a {
+    min-height: 42px;
+    padding: .35rem .48rem;
+    font-size: clamp(.82rem, .95vw, .98rem);
+}
+body .site-header[data-studio-glass] .language-switcher__link {
+    min-height: 35px;
+    padding: .25rem .35rem;
+    font-size: clamp(.7rem, .81vw, .87rem);
+}
+body .site-header[data-studio-glass] .language-switcher__link.is-current {
+    background: transparent;
+    color: #eff2f8;
+    border: 0;
+    font-weight: 700;
+}
+body .site-header[data-studio-glass] .main-navigation a::before,
+body .site-header[data-studio-glass] .language-switcher__link::before {
+    content: "";
+    position: absolute;
+    inset: -13px -19px;
+    z-index: -1;
+    pointer-events: none;
+    border-radius: 48%;
+    background: radial-gradient(
+        ellipse at var(--studio-pointer-x, 50%) var(--studio-pointer-y, 50%),
+        rgba(85, 160, 255, .42),
+        rgba(108, 95, 232, .25) 36%,
+        transparent 72%
+    );
+    filter: blur(12px);
+    opacity: 0;
+    transform: scale(.86) rotate(-9deg);
+    transition: opacity 450ms ease, transform 600ms cubic-bezier(.22, .7, .2, 1);
+}
+body .site-header[data-studio-glass] .main-navigation a::after,
+body .site-header[data-studio-glass] .language-switcher__link::after {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    inset: -15px -17px;
+    border-radius: 48%;
+    pointer-events: none;
+    background:
+        radial-gradient(ellipse 55% 45% at 28% 65%, rgba(56, 169, 255, .3), transparent 90%),
+        radial-gradient(ellipse 60% 47% at 77% 33%, rgba(118, 88, 241, .24), transparent 90%);
+    filter: blur(9px);
+    opacity: 0;
+    transform: scale(.9);
+    transition: opacity 440ms ease, transform 560ms ease;
+}
+body .site-header[data-studio-glass] .main-navigation a:is(:hover, :focus-visible),
+body .site-header[data-studio-glass] .language-switcher__link:is(:hover, :focus-visible) {
+    color: #fff;
+    background: transparent;
+    transform: translate3d(0, -2px, 0);
+}
+body .site-header[data-studio-glass] .main-navigation a:is(:hover, :focus-visible)::before,
+body .site-header[data-studio-glass] .language-switcher__link:is(:hover, :focus-visible)::before {
+    opacity: .9;
+    transform: scale(1.05) rotate(4deg);
+    animation: studio-nav-hover-breathe 2.8s ease-in-out infinite alternate;
+}
+body .site-header[data-studio-glass] .main-navigation a:is(:hover, :focus-visible)::after,
+body .site-header[data-studio-glass] .language-switcher__link:is(:hover, :focus-visible)::after {
+    opacity: .85;
+    animation: studio-nav-halo-drift 3.2s ease-in-out infinite alternate;
+}
+body .site-header[data-studio-glass] .main-navigation a:focus-visible,
+body .site-header[data-studio-glass] .language-switcher__link:focus-visible {
+    outline: 2px solid #9bbfff;
+    outline-offset: 4px;
+}
+@keyframes studio-nav-hover-breathe {
+    from { filter: blur(12px); transform: scale(1.01) rotate(-5deg); }
+    to { filter: blur(16px); transform: scale(1.13) rotate(5deg); }
+}
+@keyframes studio-nav-halo-drift {
+    from { transform: translate3d(-5%, 3%, 0) rotate(-9deg) scale(.89); }
+    to { transform: translate3d(7%, -4%, 0) rotate(10deg) scale(1.13); }
+}
+@media (max-width: 1120px) {
+    body .site-header[data-studio-glass] .site-header__inner {
+        grid-template-columns: minmax(130px, 1fr) auto;
+        gap: .35rem 1.4rem;
+        padding-block: .5rem;
+    }
+    body .site-header[data-studio-glass] .main-navigation__list {
+        flex-wrap: wrap;
+        justify-content: flex-end;
+    }
+    body .site-header[data-studio-glass] .language-switcher {
+        grid-column: 1 / -1;
+        justify-self: center;
+    }
+}
+@media (max-width: 620px) {
+    body .site-header[data-studio-glass] .site-header__inner {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: .15rem;
+        padding: .7rem 1rem;
+    }
+    body .site-header[data-studio-glass] .site-branding {
+        width: 100%;
+    }
+    body .site-header[data-studio-glass] .main-navigation {
+        justify-self: start;
+    }
+    body .site-header[data-studio-glass] .main-navigation__list {
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        gap: .1rem;
+    }
+    body .site-header[data-studio-glass] .main-navigation a {
+        min-height: 36px;
+        padding: .25rem .43rem;
+        font-size: .83rem;
+    }
+    body .site-header[data-studio-glass] .language-switcher {
+        align-self: stretch;
+    }
+    body .site-header[data-studio-glass] .language-switcher__list {
+        justify-content: flex-start;
+        flex-wrap: wrap;
+        gap: .05rem;
+    }
+    body .site-header[data-studio-glass] .language-switcher__link {
+        min-height: 32px;
+        padding: .15rem .33rem;
+        font-size: .74rem;
+    }
+}
+@media (prefers-reduced-motion: reduce) {
+    body .site-header[data-studio-glass],
+    body .site-header[data-studio-glass]::before,
+    body .site-header[data-studio-glass] .main-navigation a,
+    body .site-header[data-studio-glass] .language-switcher__link,
+    body .site-header[data-studio-glass] .main-navigation a::before,
+    body .site-header[data-studio-glass] .main-navigation a::after,
+    body .site-header[data-studio-glass] .language-switcher__link::before,
+    body .site-header[data-studio-glass] .language-switcher__link::after {
+        animation: none !important;
+        transition: none !important;
+        transform: none !important;
+    }
+}
+@media (forced-colors: active) {
+    body .site-header[data-studio-glass] {
+        border-bottom-color: CanvasText;
+    }
+    body .site-header[data-studio-glass]::before,
+    body .site-header[data-studio-glass] .main-navigation a::before,
+    body .site-header[data-studio-glass] .main-navigation a::after,
+    body .site-header[data-studio-glass] .language-switcher__link::before,
+    body .site-header[data-studio-glass] .language-switcher__link::after {
+        display: none;
+    }
+}

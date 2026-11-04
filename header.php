@@ -31,7 +31,7 @@ $home_url         = Site_Data::home_url();
         <?php esc_html_e( 'Skip to content', 'mrsobolle' ); ?>
     </a>
 
-    <header id="masthead" class="site-header">
+    <header id="masthead" class="site-header" data-studio-glass>
         <div class="site-header__inner">
 
             <div class="site-branding">
@@ -80,16 +80,23 @@ $home_url         = Site_Data::home_url();
                         $apps_url = Directory_Data::directory_url( 'apps' );
                         ?>
                         <?php if ( '' !== $work_url ) : ?>
-                            <li><a href="<?php echo esc_url( $work_url ); ?>"><?php esc_html_e( 'Work', 'mrsobolle' ); ?></a></li>
+                            <li><a href="<?php echo esc_url( $work_url ); ?>"><?php esc_html_e( 'Engineering', 'mrsobolle' ); ?></a></li>
                         <?php endif; ?>
                         <?php if ( '' !== $apps_url ) : ?>
-                            <li><a href="<?php echo esc_url( $apps_url ); ?>"><?php esc_html_e( 'Apps', 'mrsobolle' ); ?></a></li>
+                            <li><a href="<?php echo esc_url( $apps_url ); ?>"><?php esc_html_e( 'Products', 'mrsobolle' ); ?></a></li>
                         <?php endif; ?>
-                        <li><a href="<?php echo esc_url( $home_url . '#about' ); ?>"><?php esc_html_e( 'About', 'mrsobolle' ); ?></a></li>
-                        <?php if ( '' === $work_url && '' === $apps_url ) : ?>
-                            <li><a href="<?php echo esc_url( $home_url . '#projects' ); ?>"><?php esc_html_e( 'Projects', 'mrsobolle' ); ?></a></li>
+                        <?php $journal_url = Site_Data::content_page_url( 'journal' ); ?>
+                        <?php if ( '' !== $journal_url ) : ?>
+                            <li><a href="<?php echo esc_url( $journal_url ); ?>"><?php esc_html_e( 'Journal', 'mrsobolle' ); ?></a></li>
                         <?php endif; ?>
-                        <li><a href="<?php echo esc_url( $home_url . '#contact' ); ?>"><?php esc_html_e( 'Contact', 'mrsobolle' ); ?></a></li>
+                        <?php $about_url = Site_Data::content_page_url( 'about' ); ?>
+                        <?php if ( '' !== $about_url ) : ?>
+                            <li><a href="<?php echo esc_url( $about_url ); ?>"><?php esc_html_e( 'About', 'mrsobolle' ); ?></a></li>
+                        <?php endif; ?>
+                        <?php $contact_url = Site_Data::content_page_url( 'contact' ); ?>
+                        <?php if ( '' !== $contact_url ) : ?>
+                            <li><a href="<?php echo esc_url( $contact_url ); ?>"><?php esc_html_e( 'Contact', 'mrsobolle' ); ?></a></li>
+                        <?php endif; ?>
                     </ul>
 
                 <?php endif; ?>

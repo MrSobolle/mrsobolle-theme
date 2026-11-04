@@ -21,10 +21,11 @@ final class Page_Data {
      */
     public static function front_page(): array {
         return [
-            'hero'     => self::get_hero_data(),
-            'about'    => self::get_about_data(),
-            'projects' => self::get_projects_data(),
-            'contact'  => self::get_contact_data(),
+            'hero'       => self::get_hero_data(),
+            'directions' => self::get_directions_data(),
+            'projects'   => self::get_projects_data(),
+            'about'      => self::get_about_data(),
+            'contact'    => self::get_contact_data(),
         ];
     }
 
@@ -39,16 +40,16 @@ final class Page_Data {
         return [
             'eyebrow' => $owner['role'],
             'title'   => $owner['name'],
-            'lead'    => __( 'I build maintainable software with PHP, WordPress, data pipelines and automation. I focus on dependable architecture and practical outcomes.', 'mrsobolle' ),
+            'lead'    => __( 'Software products, web solutions and engineering.', 'mrsobolle' ),
             'actions' => [
                 [
-                    'label' => __( 'View projects', 'mrsobolle' ),
-                    'url'   => Directory_Data::directory_url( 'work' ) ?: '#projects',
+                    'label' => __( 'Explore apps', 'mrsobolle' ),
+                    'url'   => Directory_Data::directory_url( 'apps' ) ?: '#projects',
                     'style' => 'primary',
                 ],
                 [
-                    'label' => __( 'Contact me', 'mrsobolle' ),
-                    'url'   => '#contact',
+                    'label' => __( 'Explore work', 'mrsobolle' ),
+                    'url'   => Directory_Data::directory_url( 'work' ) ?: '#projects',
                     'style' => 'secondary',
                 ],
             ],
@@ -64,6 +65,37 @@ final class Page_Data {
         ];
     }
 
+    /**
+     * Public areas of work. Unpublished developer tools link to the Apps
+     * catalogue, while WideCrop links to its actual translated product page.
+     *
+     * @return array<string, mixed>
+     */
+    private static function get_directions_data(): array {
+        $products_url    = Directory_Data::directory_url( 'apps' );
+        $engineering_url = Directory_Data::directory_url( 'work' );
+
+        return [
+            'kicker' => __( 'What I build', 'mrsobolle' ),
+            'title'  => __( 'Independent software for practical problems.', 'mrsobolle' ),
+            'items'  => [
+                [
+                    'number'     => '01',
+                    'title'      => __( 'Products', 'mrsobolle' ),
+                    'text'       => __( 'Useful software built to solve practical problems.', 'mrsobolle' ),
+                    'url'        => $products_url,
+                    'link_label' => __( 'Explore apps', 'mrsobolle' ),
+                ],
+                [
+                    'number'     => '02',
+                    'title'      => __( 'Engineering', 'mrsobolle' ),
+                    'text'       => __( 'Software engineering, architecture and selected professional work.', 'mrsobolle' ),
+                    'url'        => $engineering_url,
+                    'link_label' => __( 'Explore work', 'mrsobolle' ),
+                ],
+            ],
+        ];
+    }
     /**
      * Returns about section data.
      *

@@ -14,7 +14,7 @@ $decode = static function ( string $bytes ): array {
     }
 
     $header = unpack( 'Vmagic/Vrevision/Vcount/Vorig/Vtrans/Vhashsize/Vhashoffset', substr( $bytes, 0, 28 ) );
-    if ( $header['magic'] !== 0x950412de || $header['revision'] !== 0 || $header['count'] !== 50 ) {
+    if ( $header['magic'] !== 0x950412de || $header['revision'] !== 0 || $header['count'] < 58 ) {
         throw new RuntimeException( 'Unexpected MO header or entry count' );
     }
 
@@ -46,7 +46,16 @@ foreach ( $expected as $locale ) {
     }
 
     foreach ( [ 'About', 'Work', 'Apps', 'Language', 'View projects',
-        'Software Engineer / PHP & WordPress', 'Software engineering from architecture to delivery.' ] as $source ) {
+        'Software Engineer / PHP & WordPress', 'Software engineering from architecture to delivery.', 'Software products, web solutions and engineering.',
+        'What I build', 'Independent software for practical problems.', 'AI & Developer Tools',
+        'AI integrations, automation and utilities for local developer workflows.', 'Browser Extensions',
+        'WideCrop brings flexible video framing to ultrawide screens.', 'Explore WideCrop',
+        'Products', 'Engineering', 'Journal', 'Changelog', 'Related articles',
+        'Pre-alpha', 'In development', 'Preparing release', 'Released',
+        'All topics', 'Read article', 'No articles yet.',
+        'Useful software built to solve practical problems.',
+        'Software engineering, architecture and selected professional work.',
+        'Version history will appear after the first release.' ] as $source ) {
         if ( ! isset( $messages[ $source ] ) || $messages[ $source ] === '' ) {
             throw new RuntimeException( "Missing translation: $locale $source" );
         }

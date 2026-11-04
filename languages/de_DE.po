@@ -154,3 +154,78 @@ msgstr "Projekte"
 
 msgid "© %1$s %2$s. All rights reserved."
 msgstr "© %1$s %2$s. Alle Rechte vorbehalten."
+
+msgid "Software products, web solutions and engineering."
+msgstr "Softwareprodukte, Weblösungen und Engineering."
+
+msgid "What I build"
+msgstr "Was ich entwickle"
+
+msgid "Independent software for practical problems."
+msgstr "Unabhängige Software für praktische Aufgaben."
+
+msgid "AI & Developer Tools"
+msgstr "KI und Entwicklerwerkzeuge"
+
+msgid "AI integrations, automation and utilities for local developer workflows."
+msgstr "KI-Integrationen, Automatisierung und Werkzeuge für lokale Entwicklungsabläufe."
+
+msgid "Browser Extensions"
+msgstr "Browser-Erweiterungen"
+
+msgid "WideCrop brings flexible video framing to ultrawide screens."
+msgstr "WideCrop ermöglicht eine flexible Videoanpassung für ultrabreite Bildschirme."
+
+msgid "Explore WideCrop"
+msgstr "WideCrop entdecken"
+
+msgid "Version history will appear after the first release."
+msgstr "Der Versionsverlauf erscheint nach der ersten Veröffentlichung."
+
+msgid "Preparing release"
+msgstr "Veröffentlichung in Vorbereitung"
+
+msgid "Engineering"
+msgstr "Softwareentwicklung"
+
+msgid "Journal"
+msgstr "Journal"
+
+msgid "Journal topics"
+msgstr "Journalthemen"
+
+msgid "Released"
+msgstr "Veröffentlicht"
+
+msgid "No articles yet."
+msgstr "Noch keine Beiträge."
+
+msgid "Journal pages"
+msgstr "Journalseiten"
+
+msgid "All topics"
+msgstr "Alle Themen"
+
+msgid "Changelog"
+msgstr "Versionsverlauf"
+
+msgid "Software engineering, architecture and selected professional work."
+msgstr "Softwareentwicklung, Systemarchitektur und ausgewählte Projekte."
+
+msgid "Useful software built to solve practical problems."
+msgstr "Nützliche Software für praktische Aufgaben."
+
+msgid "Products"
+msgstr "Produkte"
+
+msgid "Read article"
+msgstr "Beitrag lesen"
+
+msgid "Pre-alpha"
+msgstr "Pre-Alpha"
+
+msgid "In development"
+msgstr "In Entwicklung"
+
+msgid "Related articles"
+msgstr "Verwandte Beiträge"

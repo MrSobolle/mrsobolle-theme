@@ -154,3 +154,78 @@ msgstr "Proyectos"
 
 msgid "© %1$s %2$s. All rights reserved."
 msgstr "© %1$s %2$s. Todos los derechos reservados."
+
+msgid "Software products, web solutions and engineering."
+msgstr "Productos de software, soluciones web e ingeniería."
+
+msgid "What I build"
+msgstr "Lo que desarrollo"
+
+msgid "Independent software for practical problems."
+msgstr "Software independiente para necesidades reales."
+
+msgid "AI & Developer Tools"
+msgstr "IA y herramientas para desarrolladores"
+
+msgid "AI integrations, automation and utilities for local developer workflows."
+msgstr "Integraciones de IA, automatización y utilidades para flujos de trabajo de desarrollo locales."
+
+msgid "Browser Extensions"
+msgstr "Extensiones de navegador"
+
+msgid "WideCrop brings flexible video framing to ultrawide screens."
+msgstr "WideCrop permite ajustar el encuadre del vídeo a pantallas ultraanchas."
+
+msgid "Explore WideCrop"
+msgstr "Descubrir WideCrop"
+
+msgid "Version history will appear after the first release."
+msgstr "El historial de versiones aparecerá después del primer lanzamiento."
+
+msgid "Preparing release"
+msgstr "Preparando el lanzamiento"
+
+msgid "Engineering"
+msgstr "Ingeniería de software"
+
+msgid "Journal"
+msgstr "Diario"
+
+msgid "Journal topics"
+msgstr "Temas del diario"
+
+msgid "Released"
+msgstr "Publicado"
+
+msgid "No articles yet."
+msgstr "Todavía no hay artículos."
+
+msgid "Journal pages"
+msgstr "Páginas del diario"
+
+msgid "All topics"
+msgstr "Todos los temas"
+
+msgid "Changelog"
+msgstr "Historial de versiones"
+
+msgid "Software engineering, architecture and selected professional work."
+msgstr "Ingeniería de software, arquitectura y proyectos profesionales seleccionados."
+
+msgid "Useful software built to solve practical problems."
+msgstr "Software útil para resolver problemas prácticos."
+
+msgid "Products"
+msgstr "Productos"
+
+msgid "Read article"
+msgstr "Leer artículo"
+
+msgid "Pre-alpha"
+msgstr "Prealfa"
+
+msgid "In development"
+msgstr "En desarrollo"
+
+msgid "Related articles"
+msgstr "Artículos relacionados"
