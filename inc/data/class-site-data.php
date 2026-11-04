@@ -52,7 +52,7 @@ final class Site_Data {
      * @return string Localized public URL, or empty when unavailable.
      */
     public static function content_page_url( string $slug ): string {
-        if ( ! in_array( $slug, [ 'about', 'contact', 'journal' ], true ) ) {
+        if ( ! in_array( $slug, [ 'about', 'contact', 'journal', 'privacy', 'terms' ], true ) ) {
             return '';
         }
 
@@ -98,13 +98,8 @@ final class Site_Data {
         return [
             [
                 'label' => __( 'Email', 'mrsobolle' ),
-                'url'   => 'mailto:contact@mrsobolle.com',
+                'url'   => 'mailto:mrsobolle@gmail.com',
                 'type'  => 'email',
-            ],
-            [
-                'label' => __( 'LinkedIn', 'mrsobolle' ),
-                'url'   => 'https://www.linkedin.com/in/mrsobolle/',
-                'type'  => 'social',
             ],
             [
                 'label' => __( 'GitHub', 'mrsobolle' ),

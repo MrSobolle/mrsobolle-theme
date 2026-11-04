@@ -36,6 +36,7 @@ final class Assets {
             $this->enqueue_home_styles();
         }
         $this->enqueue_shared_header();
+        wp_enqueue_style( 'mrsobolle-content', get_template_directory_uri() . '/assets/css/studio-content.css', [ 'mrsobolle-studio-header' ], (string) filemtime( get_template_directory() . '/assets/css/studio-content.css' ) );
         $this->enqueue_main_scripts();
     }
 
@@ -141,7 +142,7 @@ final class Assets {
         wp_enqueue_script(
             self::HANDLE_PREFIX . '-main',
             $file_uri,
-            [ 'jquery' ],
+            [],
             (string) filemtime( $file_path ),
             true
         );

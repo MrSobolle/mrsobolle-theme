@@ -18,7 +18,7 @@ $empty  = 'work' === $kind
     : __( 'Product pages will appear here as they become available.', 'mrsobolle' );
 ?>
 
-<main id="primary" class="site-main catalog-page catalog-page--<?php echo esc_attr( $kind ); ?>">
+<main id="primary" tabindex="-1" class="site-main catalog-page catalog-page--<?php echo esc_attr( $kind ); ?>">
     <?php if ( have_posts() ) : ?>
         <?php while ( have_posts() ) : ?>
             <?php

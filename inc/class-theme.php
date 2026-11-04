@@ -42,6 +42,7 @@ final class Theme {
             Error_Handler::class,
             Setup::class,
             Assets::class,
+            Seo::class,
         ];
 
         foreach ( $modules as $module_class ) {

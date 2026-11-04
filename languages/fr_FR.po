@@ -229,3 +229,57 @@ msgstr "En développement"
 
 msgid "Related articles"
 msgstr "Articles associés"
+
+msgid "Breadcrumbs"
+msgstr "Fil d’Ariane"
+
+msgid "Page not found"
+msgstr "Page introuvable"
+
+msgid "This address may have changed. Explore the site or try a search."
+msgstr "Cette adresse a peut-être changé. Consultez le site ou lancez une recherche."
+
+msgid "Search results"
+msgstr "Résultats de recherche"
+
+msgid "Search the site"
+msgstr "Rechercher sur le site"
+
+msgid "Search"
+msgstr "Rechercher"
+
+msgid "No matching content. Try a different search."
+msgstr "Aucun contenu correspondant. Essayez une autre recherche."
+
+msgid "Product resources"
+msgstr "Ressources du produit"
+
+msgid "Privacy"
+msgstr "Confidentialité"
+
+msgid "Terms"
+msgstr "Conditions"
+
+msgid "Message preview"
+msgstr "Aperçu du message"
+
+msgid "Demo only. Nothing is sent or saved. Use email for a real inquiry."
+msgstr "Démonstration uniquement. Rien n’est envoyé ni enregistré. Pour une demande réelle, utilisez l’e-mail."
+
+msgid "Name"
+msgstr "Nom"
+
+msgid "Message"
+msgstr "Message"
+
+msgid "Check demo message"
+msgstr "Vérifier le message démo"
+
+msgid "Clear"
+msgstr "Effacer"
+
+msgid "The demo is complete. Your message has NOT been sent. Please use the email link to contact me."
+msgstr "Démonstration terminée. Votre message n’a PAS été envoyé. Veuillez utiliser le lien e-mail."
+
+msgid "This demo requires JavaScript. You can still use the email link."
+msgstr "Cette démonstration nécessite JavaScript. Le lien e-mail reste disponible."
