@@ -176,6 +176,50 @@
         const rim = new THREE.PointLight(0xc8deff, 20);
         rim.position.set(1.9, 1.7, -3.9); scene.add(rim);
 
+        // Diffuse blue/violet room projections follow the actual ribbon
+        // rotation. No second 3D renderer or separate animation loop.
+        const room = document.querySelector('[data-studio-room]');
+        const floorGlow = room?.querySelector('[data-studio-reflection="floor"]');
+        const leftGlow = room?.querySelector('[data-studio-reflection="left"]');
+        const rightGlow = room?.querySelector('[data-studio-reflection="right"]');
+        const glows = [floorGlow, leftGlow, rightGlow].filter(Boolean);
+        let lastReflectionFrame = 0;
+        const projectReflections = (now) => {
+            if (!glows.length || now - lastReflectionFrame < 48) return;
+            lastReflectionFrame = now;
+
+            const turn = sculpture.rotation.y;
+            const tilt = sculpture.rotation.x;
+            const drift = Math.sin(turn * 1.65);
+            const sweep = Math.cos(turn * 2.05 + tilt * .8);
+
+            if (floorGlow) {
+                floorGlow.setAttribute('transform',
+                    'translate(' + (drift * 74).toFixed(1) + ' ' +
+                    (sweep * 13).toFixed(1) + ') rotate(' +
+                    (sweep * 6).toFixed(1) + ' 800 647)');
+                floorGlow.setAttribute('opacity', (.40 + .065 * sweep).toFixed(3));
+            }
+            if (leftGlow) {
+                leftGlow.setAttribute('transform',
+                    'translate(' + (sweep * 35).toFixed(1) + ' ' +
+                    (drift * 20).toFixed(1) + ')');
+                leftGlow.setAttribute('opacity', (.27 + .065 * drift).toFixed(3));
+            }
+            if (rightGlow) {
+                rightGlow.setAttribute('transform',
+                    'translate(' + (-drift * 40).toFixed(1) + ' ' +
+                    (sweep * 19).toFixed(1) + ')');
+                rightGlow.setAttribute('opacity', (.31 - .075 * drift).toFixed(3));
+            }
+        };
+        const clearReflections = () => {
+            glows.forEach(glow => {
+                glow.setAttribute('opacity', '0');
+                glow.removeAttribute('transform');
+            });
+        };
+
         const target = {x: 0, y: 0};
         let visible = true;
         const started = performance.now();
@@ -209,6 +253,7 @@
             hero.removeEventListener('pointermove', move);
             hero.removeEventListener('pointerleave', leave);
             intersection.disconnect(); observer.disconnect();
+            clearReflections();
             geometry.dispose(); material.dispose();
             environmentTarget.dispose();
             contourGeometries.forEach(g => g.dispose());
@@ -228,6 +273,7 @@
                 sculpture.rotation.y += (y - sculpture.rotation.y) * .055;
                 sculpture.rotation.z += (z - sculpture.rotation.z) * .055;
                 sculpture.position.y = .06 + Math.sin(t * .23) * .12;
+                projectReflections(now);
                 renderer.render(scene, camera);
             }
             requestAnimationFrame(draw);

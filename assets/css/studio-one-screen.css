@@ -57,6 +57,9 @@ body.home .studio-room {
     transform-origin:center;will-change:transform;
 }
 body.home .studio-room__geometry {position:absolute;inset:0;display:block;width:100%;height:100%;}
+/* All three reflections are initially OFF. Their opacity and motion come
+   only from the live Three.js ribbon; no stale glow if WebGL is unavailable. */
+body.home .studio-room__reflection {pointer-events:none;}
 body.home .studio-room__atmosphere {
     position:absolute;inset:6% 12% 17%;
     background:radial-gradient(ellipse 38% 30% at 38% 68%,rgba(31,66,136,.095),transparent 100%),
@@ -101,7 +104,7 @@ body.home .hero-section--studio .hero-section__lead {
     font-size:clamp(.98rem,1.35vw,1.26rem);
 }
 body.home .studio-hero__art {
-    z-index:0;inset:-16% -12% -15% 26%;opacity:.43;
+    z-index:0;inset:-10% -4% -11% -4%;opacity:.43;
     -webkit-mask-image:radial-gradient(ellipse 74% 72% at 62% 51%,#000 20%,rgba(0,0,0,.8) 56%,transparent 100%);
     mask-image:radial-gradient(ellipse 74% 72% at 62% 51%,#000 20%,rgba(0,0,0,.8) 56%,transparent 100%);
 }
@@ -193,7 +196,7 @@ body.home .studio-tile:is(:hover,:focus-visible) .studio-tile__arrow {
     body.home .studio-tile {height:auto;}
     body.home .studio-tile {min-height:155px;}
     body.home .hero-section--studio .hero-section__content {max-width:580px;}
-    body.home .studio-hero__art {inset:-10% -20% -15% 20%;opacity:.3;}
+    body.home .studio-hero__art {inset:-10% -12% -15% -12%;opacity:.3;}
 }
 @media (max-width:620px) {
     body.home .site-header__inner {
