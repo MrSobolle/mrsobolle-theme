@@ -104,7 +104,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          flags=(-rlptzv --delete-delay --delay-updates --max-delete=25 --chmod=D2775,F664 --itemize-changes)
+          flags=(-rlptzv --omit-dir-times --delete-delay --delay-updates --max-delete=25 --chmod=D2775,F664 --itemize-changes)
           if [[ "$DRY_RUN" == "true" ]]; then
             flags+=(--dry-run)
             echo "Preview only: no files will be changed."
