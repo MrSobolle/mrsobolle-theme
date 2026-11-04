@@ -34,3 +34,6 @@ package.json
 package-lock.json
 test-results/
 playwright-report/
+
+docs/
+bundled-plugins/

@@ -106,3 +106,4 @@ $home_url         = Site_Data::home_url();
 
         </div>
     </header>
+<?php get_template_part( 'template-parts/site/breadcrumbs' ); ?>

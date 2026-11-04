@@ -229,3 +229,57 @@ msgstr "En desarrollo"
 
 msgid "Related articles"
 msgstr "Artículos relacionados"
+
+msgid "Breadcrumbs"
+msgstr "Ruta de navegación"
+
+msgid "Page not found"
+msgstr "Página no encontrada"
+
+msgid "This address may have changed. Explore the site or try a search."
+msgstr "Es posible que esta dirección haya cambiado. Explora el sitio o utiliza la búsqueda."
+
+msgid "Search results"
+msgstr "Resultados de búsqueda"
+
+msgid "Search the site"
+msgstr "Buscar en el sitio"
+
+msgid "Search"
+msgstr "Buscar"
+
+msgid "No matching content. Try a different search."
+msgstr "No hay coincidencias. Prueba otra búsqueda."
+
+msgid "Product resources"
+msgstr "Recursos del producto"
+
+msgid "Privacy"
+msgstr "Privacidad"
+
+msgid "Terms"
+msgstr "Condiciones"
+
+msgid "Message preview"
+msgstr "Vista previa del mensaje"
+
+msgid "Demo only. Nothing is sent or saved. Use email for a real inquiry."
+msgstr "Solo demostración. No se envía ni guarda nada. Para consultas reales, utiliza el correo electrónico."
+
+msgid "Name"
+msgstr "Nombre"
+
+msgid "Message"
+msgstr "Mensaje"
+
+msgid "Check demo message"
+msgstr "Comprobar mensaje de prueba"
+
+msgid "Clear"
+msgstr "Borrar"
+
+msgid "The demo is complete. Your message has NOT been sent. Please use the email link to contact me."
+msgstr "Demostración completada. Tu mensaje NO se ha enviado. Utiliza el enlace de correo electrónico."
+
+msgid "This demo requires JavaScript. You can still use the email link."
+msgstr "Esta demostración requiere JavaScript. Puedes usar el enlace de correo electrónico."

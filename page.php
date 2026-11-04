@@ -15,7 +15,7 @@ defined( 'ABSPATH' ) || exit;
 get_header();
 ?>
 
-<main id="primary" class="site-main content-page">
+<main id="primary" tabindex="-1" class="site-main content-page">
     <div class="container">
         <?php while ( have_posts() ) : ?>
             <?php
@@ -39,10 +39,7 @@ get_header();
                     <?php wp_link_pages(); ?>
                 </div>
                 <?php if ( '' !== $product_key ) : ?>
-                    <?php $changelog_url = Product_Data::changelog_url( get_the_ID() ); ?>
-                    <?php if ( '' !== $changelog_url ) : ?>
-                        <p class="product-changelog-link"><a href="<?php echo esc_url( $changelog_url ); ?>"><?php esc_html_e( 'Changelog', 'mrsobolle' ); ?> &rarr;</a></p>
-                    <?php endif; ?>
+                    <?php get_template_part( 'template-parts/site/product-resources' ); ?>
                     <?php $related = function_exists( 'sobolle_studio_related_articles' ) ? sobolle_studio_related_articles( $product_key ) : []; ?>
                     <?php if ( ! empty( $related ) ) : ?>
                         <section class="related-articles" aria-labelledby="related-articles-title">

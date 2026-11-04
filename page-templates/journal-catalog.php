@@ -8,7 +8,7 @@
 defined( 'ABSPATH' ) || exit;
 get_header();
 ?>
-<main id="primary" class="site-main journal-page">
+<main id="primary" tabindex="-1" class="site-main journal-page">
     <div class="container">
         <?php while ( have_posts() ) : the_post(); ?>
             <?php
@@ -27,11 +27,11 @@ get_header();
                 $term = get_term( $term_id, 'category' );
                 if ( $term instanceof WP_Term ) { $topics[ $slug ] = $term; }
             }
-            $selected = isset( $_GET['topic'] ) ? sanitize_key( wp_unslash( $_GET['topic'] ) ) : '';
+            $selected = isset( $_GET['topic'] ) && is_string( $_GET['topic'] ) ? sanitize_key( wp_unslash( $_GET['topic'] ) ) : '';
             if ( ! array_key_exists( $selected, $topics ) ) { $selected = ''; }
             $base_url = get_permalink( $journal_id );
             $category_ids = $selected ? [ (int) $topics[ $selected ]->term_id ] : array_map( static fn( $term ) => (int) $term->term_id, array_values( $topics ) );
-            $page = isset( $_GET['journal_page'] ) ? max( 1, absint( $_GET['journal_page'] ) ) : 1;
+            $page = isset( $_GET['journal_page'] ) && is_scalar( $_GET['journal_page'] ) ? max( 1, min( 1000, absint( $_GET['journal_page'] ) ) ) : 1;
             ?>
             <header class="journal-page__header">
                 <p class="section-kicker">Sobolle Studio</p>

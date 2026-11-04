@@ -9,7 +9,7 @@ use MrSobolle\Data\Product_Data;
 defined( 'ABSPATH' ) || exit;
 get_header();
 ?>
-<main id="primary" class="site-main content-page changelog-page">
+<main id="primary" tabindex="-1" class="site-main content-page changelog-page">
     <div class="container">
         <?php while ( have_posts() ) : the_post(); ?>
             <?php
